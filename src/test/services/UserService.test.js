@@ -41,4 +41,17 @@ describe('UserService', function() {
       console.error(err);
     }
   });
+
+  it('should find the user by email', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const service = new UserService(User);
+
+      const result = await service.findByEmail(user.email);
+
+      expect(result.email).to.equal(user.email);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
