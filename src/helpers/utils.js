@@ -22,7 +22,7 @@ function configureSequelize(sequelize, DataTypes) {
 
   sequelize.sync({ force: true, logging: false });
 
-  return [sequelize, User, Contact];
+  return [User, Contact];
 }
 
 module.exports = {
