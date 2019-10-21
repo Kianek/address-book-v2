@@ -18,9 +18,11 @@ db.authenticate()
 // Import routes
 const users = require('./routes/users');
 const contacts = require('./routes/contacts');
+const auth = require('./routes/auth');
 
 app.use('/users', users);
 app.use('/contacts', contacts);
+app.use('/auth', auth);
 
 // Start server
 const port = process.env.PORT;
