@@ -21,6 +21,17 @@ module.exports = (sequelize, DataTypes) => {
         min: 2,
       },
     },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: {
+        isEmail: true,
+      },
+    },
     line1: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -56,7 +67,14 @@ module.exports = (sequelize, DataTypes) => {
         min: 3,
       },
       set(value) {
-        this.setDataValue('postalCode', value.toString().ToUpperCase());
+        this.setDataValue('postalCode', value.toString().toUpperCase());
+      },
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'users',
+        key: 'id',
       },
     },
   });
