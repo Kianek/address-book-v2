@@ -62,7 +62,7 @@ describe('UserService', function() {
 
       const result = await service.update(user.id, { firstName: 'Schlarple' });
 
-      expect(result.firstName).to.equal('Shlarple');
+      expect(result.firstName).to.equal('Schlarple');
     } catch (err) {
       console.error(err);
     }
