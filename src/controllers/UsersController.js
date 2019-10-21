@@ -19,6 +19,11 @@ module.exports = function UsersController(UserModel) {
     try {
       const service = new UserService(UserModel);
       const result = await service.update(req.params.id, req.body);
+
+      if (!result)
+        return res.status(500).json({ msg: 'Unable to update user' });
+
+      return res.status(200).json(plainify(result));
     } catch (err) {
       return status(500).json({ msg: 'Unable to update user' });
     }
