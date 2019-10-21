@@ -28,4 +28,17 @@ describe('UserService', function() {
       console.error(err);
     }
   });
+
+  it('should find the user by ID', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const service = new UserService(User);
+
+      const result = await service.findById(user.id);
+
+      expect(result.id).to.equal(user.id);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
