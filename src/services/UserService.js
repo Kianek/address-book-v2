@@ -1,0 +1,31 @@
+module.exports = function UserService(UserModel) {
+  this.User = UserModel;
+
+  this.findById = async function(id) {
+    return this.User.findByPk(id);
+  };
+
+  this.findByEmail = async function(email) {
+    return this.User.findOne({ where: { email } });
+  };
+
+  this.add = async function(userInfo) {
+    return await this.User.create(userInfo);
+  };
+
+  this.update = async function(id, newInfo) {
+    try {
+      const user = await this.User.findById(id);
+
+      if (!user) return null;
+
+      return user.update(newInfo);
+    } catch (err) {
+      return { msg: err };
+    }
+  };
+
+  this.remove = async function(id) {
+    return this.User.destroy({ where: { id } });
+  };
+};
