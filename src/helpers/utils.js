@@ -6,6 +6,14 @@ function plainify(model) {
   return model.get({ plain: true });
 }
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  }
+
+  return res.status(403).json({ msg: 'Not authorized' });
+}
+
 function hashPassword(password) {
   return bcrypt.hashSync(password, 10);
 }
@@ -30,4 +38,5 @@ module.exports = {
   configureSequelize,
   hashPassword,
   comparePasswords,
+  ensureAuthenticated,
 };
