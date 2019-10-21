@@ -67,4 +67,17 @@ describe('UserService', function() {
       console.error(err);
     }
   });
+
+  it('should delete a given user', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const service = new UserService(User);
+
+      const result = await service.remove(user.id);
+
+      expect(result).to.equal(1);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
