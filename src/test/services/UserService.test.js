@@ -54,4 +54,17 @@ describe('UserService', function() {
       console.error(err);
     }
   });
+
+  it('should update the user info', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const service = new UserService(User);
+
+      const result = await service.update(user.id, { firstName: 'Schlarple' });
+
+      expect(result.firstName).to.equal('Shlarple');
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
