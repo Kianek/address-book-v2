@@ -21,7 +21,7 @@ async function seedUsers(numOfUsers) {
         email: faker.fake('{{internet.email}}'),
         firstName: faker.fake('{{name.firstName}}'),
         lastName: faker.fake('{{name.lastName}}'),
-        passwordHash: faker.fake('{{internet.password}}'),
+        passwordHash: 'password123',
       })
     );
   }
