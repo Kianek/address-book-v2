@@ -7,11 +7,11 @@ module.exports = function UsersController(UserModel) {
       const service = new UserService(UserModel);
 
       const result = await service.add(req.body);
-      if (!user) return res.status(500).json({ msg: 'Unable to add user' });
+      if (!result) return res.status(500).json({ msg: 'Unable to add user' });
 
       return res.status(201).json(plainify(result));
     } catch (err) {
-      return res.status(500).json({ msg: 'Unable to add user' });
+      return res.status(500).json(err);
     }
   };
 
@@ -34,12 +34,11 @@ module.exports = function UsersController(UserModel) {
       const service = new UserService(UserModel);
       const result = await service.remove(req.params.id);
 
-      if (!result)
-        return res.status(500).json({ msg: 'Unable to delete user' });
+      if (!result) return res.status(500).json({ msg: 'Unable to find user' });
 
-      return res.status(204).json(result);
+      return res.status(200).json({ usersDeleted: result });
     } catch (err) {
-      return status(500).json({ msg: 'Unable to update user' });
+      return status(500).json({ msg: 'Error deleting user' });
     }
   };
 };
