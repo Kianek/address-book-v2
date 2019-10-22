@@ -17,7 +17,7 @@ after(async () => {
   await clearDatabase();
 });
 
-describe.only('ContactService', function() {
+describe('ContactService', function() {
   it('should find a given contact', async function() {
     try {
       const [user] = await seedUsers(1);
