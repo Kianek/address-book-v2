@@ -1,6 +1,7 @@
 const express = require('express');
-const passportjs = require('passport');
+const passport = require('passport');
 const session = require('express-session');
+const morgan = require('morgan');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 
@@ -9,6 +10,7 @@ const app = express();
 
 // Configure middleware
 app.use(helmet());
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -25,7 +27,8 @@ db.authenticate()
   .catch(err => console.error(err));
 
 // Initialize Passport
-const passport = require('./config/passport')(passportjs);
+// const passport = require('./config/passport')(passportjs);
+require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
