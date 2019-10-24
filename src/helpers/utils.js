@@ -1,5 +1,14 @@
 const bcrypt = require('bcryptjs');
 
+// Determine which configured models to load based on development environment
+function loadModels() {
+  if (process.env.PRODUCTION === true) {
+    return ({ User, Contact } = require('../config/database'));
+  } else {
+    return ({ User, Contact } = require('../test/test-db'));
+  }
+}
+
 function plainify(model) {
   if (!model) return null;
 
@@ -34,6 +43,7 @@ function configureSequelize(sequelize, DataTypes) {
 }
 
 module.exports = {
+  loadModels,
   plainify,
   configureSequelize,
   hashPassword,
