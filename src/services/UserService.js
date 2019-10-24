@@ -9,13 +9,18 @@ module.exports = function UserService(UserModel) {
     return this.User.findOne({ where: { email } });
   };
 
-  this.add = async function(userInfo) {
-    return await this.User.create(userInfo);
+  this.add = async function({ firstName, lastName, email, password }) {
+    return await this.User.create({
+      firstName,
+      lastName,
+      email,
+      passwordHash: password,
+    });
   };
 
   this.update = async function(id, newInfo) {
     try {
-      const user = await this.User.findById(id);
+      const user = await this.User.findByPk(id);
 
       if (!user) return null;
 
