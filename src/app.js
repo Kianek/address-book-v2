@@ -1,4 +1,6 @@
 const express = require('express');
+const passportjs = require('passport');
+const session = require('express-session');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
 
@@ -9,11 +11,23 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 const db = require('./config/database').sequelize;
 db.authenticate()
   .then(() => console.log('Connected to DB'))
   .catch(err => console.error(err));
+
+// Initialize Passport
+const passport = require('./config/passport')(passportjs);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import routes
 const users = require('./routes/users');
