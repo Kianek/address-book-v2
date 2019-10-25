@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../config/database');
+const { loadModels } = require('../helpers/utils');
+const { User } = loadModels();
 const { ensureAuthenticated } = require('../helpers/utils');
 const UserController = require('../controllers/UsersController');
 const controller = new UserController(User);
