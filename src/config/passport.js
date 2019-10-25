@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const { comparePasswords } = require('../helpers/utils');
-const { User } = require('./database');
+const { loadModels } = require('../helpers/utils');
+const { User } = loadModels();
 
 module.exports = passport => {
   passport.use(
