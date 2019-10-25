@@ -12,19 +12,19 @@ after(async () => {
   await clearDatabase();
 });
 
-describe('UsersController', function() {
-  it('POST /users', async function() {
+describe.only('UsersController', function() {
+  it('should register a new user', async function() {
     try {
-      const newUser = {
+      const user = {
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
-        passwordHash: 'password123',
+        password: 'password123',
       };
 
       const result = await request(app)
         .post('/users')
-        .send(newUser);
+        .send(user);
 
       expect(result.body.id).to.equal(1);
     } catch (err) {
@@ -37,8 +37,15 @@ describe('UsersController', function() {
       const [user] = await seedUsers(1);
       const newInfo = { firstName: 'Blarg' };
 
-      const result = await request(app)
+      const agent = request.agent(app);
+      await agent
+        .post('/auth/login')
+        .type('application/json')
+        .send({ email: user.email, password: 'password123' });
+
+      const result = await agent
         .put(`/users/${user.id}`)
+        .type('application/json')
         .send(newInfo);
 
       expect(result.body.firstName).to.equal(newInfo.firstName);
@@ -51,7 +58,13 @@ describe('UsersController', function() {
     try {
       const [user] = await seedUsers(1);
 
-      const result = await request(app).delete(`/users/${user.id}`);
+      const agent = request.agent(app);
+      await agent
+        .post('/auth/login')
+        .type('application/json')
+        .send({ email: user.email, password: 'password123' });
+
+      const result = await agent.delete(`/users/${user.id}`);
 
       expect(result.body.usersDeleted).to.equal(1);
     } catch (err) {
