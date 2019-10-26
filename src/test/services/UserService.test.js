@@ -20,7 +20,7 @@ describe('UserService', function() {
         firstName: faker.fake('{{name.firstName}}'),
         lastName: faker.fake('{{name.lastName}}'),
         email: faker.fake('{{internet.email}}'),
-        passwordHash: 'password12345',
+        password: 'password12345',
       });
 
       expect(result.id).to.equal(1);
