@@ -12,7 +12,7 @@ after(async () => {
   await clearDatabase();
 });
 
-describe.only('UsersController', function() {
+describe('UsersController', function() {
   it('should register a new user', async function() {
     try {
       const user = {
