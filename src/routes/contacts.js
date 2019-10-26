@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const ContactsController = require('../controllers/ContactsController');
 const { ensureAuthenticated } = require('../helpers/utils');
-const { Contact } = require('../models/Contact');
+const { loadModels } = require('../helpers/utils');
+const { Contact } = loadModels();
 const controller = new ContactsController(Contact);
 
 router.get('/test', (req, res) => res.send('Contacts works'));
