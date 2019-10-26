@@ -13,6 +13,6 @@ router.post('/', ensureAuthenticated, controller.createContact);
 
 router.put('/:id', ensureAuthenticated, controller.updateContact);
 
-router.delete(':id', ensureAuthenticated, controller.deleteContact);
+router.delete('/:id', ensureAuthenticated, controller.deleteContact);
 
 module.exports = router;
