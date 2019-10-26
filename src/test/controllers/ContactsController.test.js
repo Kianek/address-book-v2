@@ -94,4 +94,23 @@ describe.only('ContactsController', function() {
       console.error(err);
     }
   });
+
+  it('should delete a contact', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const [contact] = await seedContacts(user.id, 1);
+
+      const agent = request.agent(app);
+      await agent
+        .post('/auth/login')
+        .type('application/json')
+        .send({ email: user.email, password: 'password123' });
+
+      const result = await agent.delete(`/contacts/${contact.id}`);
+
+      expect(result.body.contactsDeleted).to.equal(1);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
