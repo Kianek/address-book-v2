@@ -71,4 +71,27 @@ describe.only('ContactsController', function() {
       console.error(err);
     }
   });
+
+  it('should update a contact', async function() {
+    try {
+      const [user] = await seedUsers(1);
+      const [contact] = await seedContacts(user.id, 1);
+
+      const agent = request.agent(app);
+      await agent
+        .post('/auth/login')
+        .type('application/json')
+        .send({ email: user.email, password: 'password123' });
+
+      const newInfo = { firstName: 'Blarble', lastName: 'McGee' };
+      const result = await agent
+        .put(`/contacts/${contact.id}`)
+        .type('application/json')
+        .send(newInfo);
+
+      expect(result.body.firstName).to.equal(newInfo.firstName);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 });
