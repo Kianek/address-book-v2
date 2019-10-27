@@ -42,7 +42,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  margin: 2rem;
 
   h1 {
     text-align: center;
