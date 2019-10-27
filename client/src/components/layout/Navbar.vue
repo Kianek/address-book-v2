@@ -9,7 +9,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 nav {
   background-color: lightcoral;
   display: flex;
@@ -19,13 +19,14 @@ nav {
 
 .branding {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   margin-right: auto;
   text-decoration: none;
 }
 
 .link {
   color: white;
+  font-size: 1.2rem;
   text-decoration: none;
 
   &:hover {
