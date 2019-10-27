@@ -35,6 +35,13 @@ input {
 
   &[type="submit"] {
     cursor: pointer;
+    transition: 0.2s;
+  }
+
+  &[type="submit"]:hover {
+    border-color: gray;
+    background-color: gray;
+    color: white;
   }
 }
 </style>
