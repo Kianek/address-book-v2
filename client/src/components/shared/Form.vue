@@ -16,9 +16,22 @@ export default {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 1rem 2rem;
-  width: 60%;
+  padding: 1rem 0;
+}
+
+@media screen and (min-width: 600px) {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 1rem 0;
+    min-width: 200px;
+    width: 40%;
+  }
 }
 </style>
