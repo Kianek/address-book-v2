@@ -22,6 +22,11 @@ const routes = [
     component: () => import("../views/Dashboard.vue")
   },
   {
+    path: "/add-contact",
+    name: "AddContact",
+    component: () => import ("../views/AddContact.vue")
+  },
+  {
     path: "/settings",
     name: "settings",
     component: () => import("../views/Settings.vue")
