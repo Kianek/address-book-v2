@@ -1,7 +1,7 @@
 <template>
   <Page>
     <h1>Contacts</h1>
-    <router-link to="#" class="add">
+    <router-link to="/add-contact" class="add">
       <i class="fas fa-user-plus"></i> Add
     </router-link>
     <ul class="contacts-list">
