@@ -14,8 +14,6 @@ export default {
 
 <style lang="scss">
 footer {
-  position: fixed;
-  bottom: 0;
   background-color: lightcoral;
   color: white;
   padding: 1rem;
