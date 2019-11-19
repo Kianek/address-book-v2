@@ -16,6 +16,11 @@
     <div class="contact-info">
       <p class="phone">{{ contact.phone }}</p>
       <p class="email">{{ contact.email }}</p>
+      <p class="line1">{{ contact.line1 }}</p>
+      <p class="line2">{{ contact.line2 }}</p>
+      <p class="city">{{ contact.city }}</p>
+      <p class="state">{{ contact.stateOrProvince }}</p>
+      <p class="zip">{{ contact.postalCode }}</p>
     </div>
   </div>
 </template>
@@ -33,7 +38,12 @@ export default {
       middleName: String,
       lastName: String,
       email: String,
-      phone: String
+      phone: String,
+      line1: String,
+      line2: String,
+      city: String,
+      state: String,
+      zip: String
     }
   }
 };
@@ -45,6 +55,8 @@ export default {
 .contact-preview {
   border: solid 1px lightgray;
   border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5em;
   width: 100%;
 
