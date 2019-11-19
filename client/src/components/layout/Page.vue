@@ -10,11 +10,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
   justify-content: center;
-  margin: 2rem;
-
-  h1 {
-    text-align: center;
-  }
+  margin: auto;
 }
 </style>
