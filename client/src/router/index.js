@@ -19,17 +19,22 @@ const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: () => import("../views/Dashboard.vue")
+    component: () => import("../views/Dashboard.vue"),
   },
   {
-    path: "/add-contact",
+    path: "/add",
     name: "AddContact",
-    component: () => import ("../views/AddContact.vue")
+    component: () => import("../views/AddContact.vue"),
+  },
+  {
+    path: "/edit",
+    name: "EditContact",
+    component: () => import("../views/EditContact.vue"),
   },
   {
     path: "/settings",
     name: "settings",
-    component: () => import("../views/Settings.vue")
+    component: () => import("../views/Settings.vue"),
   }
 ];
 
