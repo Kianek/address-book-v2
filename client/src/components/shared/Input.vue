@@ -2,6 +2,7 @@
   <input
     :type="type"
     :value="value"
+    :class="classes ? classes : ''"
     :placeholder="placeholder"
     @change="$emit('change', $event.target.value)"
   />
@@ -16,6 +17,7 @@ export default {
   props: {
     value: String,
     placeholder: String,
+    classes: String,
     type: {
       type: String,
       default: "text"
@@ -26,6 +28,7 @@ export default {
 
 <style scoped lang="scss">
 input {
+  // TODO: extract styles to another file
   border: solid 1px lightgray;
   border-radius: 5px;
   font-size: 1em;
