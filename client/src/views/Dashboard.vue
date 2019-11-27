@@ -14,7 +14,7 @@
 
 <script>
 import Page from "@/components/layout/Page";
-import ContactPreview from "@/components/ContactPreview";
+import Contact from "@/components/Contact";
 
 export default {
   name: "dashboard",
@@ -39,7 +39,7 @@ export default {
   },
   components: {
     Page,
-    ContactPreview
+    Contact
   }
 };
 </script>
