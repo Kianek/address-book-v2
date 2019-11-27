@@ -4,7 +4,8 @@
     <Form :submit="submit">
       <Input v-model="email" placeholder="Email" />
       <Input v-model="password" type="password" placeholder="Password" />
-      <Input type="submit" value="Sign In" />
+      <Input v-if="!isLoading" type="submit" value="Sign In" />
+      <Input v-else type="submit" value="Signing In..." classes="cursor-disabled" />
     </Form>
     <router-link class="link" to="/register">No account? Register here.</router-link>
   </Page>
@@ -14,7 +15,6 @@
 import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
-import Spinner from "@/components/shared/Spinner.vue";
 
 export default {
   data() {
@@ -38,23 +38,23 @@ export default {
   components: {
     Page,
     Form,
-    Input,
-    Spinner
+    Input
   }
 };
 </script>
 
 <style scoped lang="scss">
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 #sign-in {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 2rem;
-
-  h1 {
-    text-align: center;
-  }
 }
 
 .link {
@@ -65,5 +65,9 @@ export default {
   &:hover {
     color: #3d6497;
   }
+}
+
+.cursor-disabled {
+  cursor: not-allowed;
 }
 </style>
