@@ -1,7 +1,7 @@
 <template>
   <Page>
     <h1>Contacts</h1>
-    <router-link to="/add-contact" class="add">
+    <router-link to="/add" class="add">
       <i class="fas fa-user-plus"></i> Add
     </router-link>
     <ul class="contacts-list">
@@ -47,10 +47,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  margin-bottom: 2rem;
+}
 .add {
   background-color: #fff;
+  border: none;
   border-radius: 5px;
-  // border: solid 1px lightgray;
+  border: solid 1px lightgray;
   // color: #00d300;
   color: #000;
   padding: 0.5em;
@@ -58,8 +62,8 @@ export default {
   transition: 0.2s;
 
   &:hover {
-    background-color: #00d300;
-    color: #fff;
+    border: 1px solid #00d300;
+    color: #00d300;
   }
 }
 
@@ -68,6 +72,7 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-top: 1rem;
+  overflow-y: auto;
   padding: 0;
   list-style-type: none;
   width: 100%;
