@@ -14,7 +14,6 @@
 
 <script>
 import Page from "@/components/layout/Page";
-// import List from "@/components/shared/List";
 import ContactPreview from "@/components/ContactPreview";
 
 export default {
@@ -40,7 +39,6 @@ export default {
   },
   components: {
     Page,
-    // List,
     ContactPreview
   }
 };
