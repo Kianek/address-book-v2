@@ -6,7 +6,7 @@
     </router-link>
     <ul class="contacts-list">
       <li v-for="contact in contacts" :key="contact.id">
-        <ContactPreview :contact="contact" />
+        <Contact :contact="contact" />
       </li>
     </ul>
   </Page>
