@@ -5,8 +5,8 @@
       <i class="fas fa-user-plus"></i> Add
     </router-link>
     <ul class="contacts-list">
-      <li v-for="contact in contacts" :key="contact.id">
-        <Contact :contact="contact" />
+      <li v-for="c in contacts" :key="c.id">
+        <Contact :contact="c" />
       </li>
     </ul>
   </Page>
