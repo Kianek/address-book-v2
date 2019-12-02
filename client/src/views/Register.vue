@@ -2,12 +2,32 @@
   <Page>
     <h1>Register</h1>
     <Form :submit="createAccount">
-      <Input v-model="firstName" placeholder="First Name" />
-      <Input v-model="lastName" placeholder="Last Name" />
-      <Input v-model="email" placeholder="Email" />
-      <Input type="password" v-model="password" placeholder="Password" />
-      <Input type="password" v-model="confirmPassword" placeholder="Confirm Password" />
-      <Input type="submit" value="Create Account" />
+      <Input
+        v-model="firstName"
+        placeholder="First Name"
+      />
+      <Input
+        v-model="lastName"
+        placeholder="Last Name"
+      />
+      <Input
+        v-model="email"
+        placeholder="Email"
+      />
+      <Input
+        type="password"
+        v-model="password"
+        placeholder="Password"
+      />
+      <Input
+        type="password"
+        v-model="confirmPassword"
+        placeholder="Confirm Password"
+      />
+      <Input
+        type="submit"
+        value="Create Account"
+      />
     </Form>
   </Page>
 </template>

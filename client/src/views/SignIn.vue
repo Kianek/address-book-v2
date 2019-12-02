@@ -2,12 +2,31 @@
   <Page>
     <h1>Sign In</h1>
     <Form :submit="submit">
-      <Input v-model="email" placeholder="Email" />
-      <Input v-model="password" type="password" placeholder="Password" />
-      <Input v-if="!isLoading" type="submit" value="Sign In" />
-      <Input v-else type="submit" value="Signing In..." classes="cursor-disabled" />
+      <Input
+        v-model="email"
+        placeholder="Email"
+      />
+      <Input
+        v-model="password"
+        type="password"
+        placeholder="Password"
+      />
+      <Input
+        v-if="!isLoading"
+        type="submit"
+        value="Sign In"
+      />
+      <Input
+        v-else
+        type="submit"
+        value="Signing In..."
+        classes="cursor-disabled"
+      />
     </Form>
-    <router-link class="link" to="/register">No account? Register here.</router-link>
+    <router-link
+      class="link"
+      to="/register"
+    >No account? Register here.</router-link>
   </Page>
 </template>
 
