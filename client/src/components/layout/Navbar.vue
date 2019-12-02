@@ -8,22 +8,29 @@
       id="dropdown"
       v-if="isAuthenticated"
     >
-      <div id="dropdown-menu">
-        <button
-          @click="menuOpen = !menuOpen"
-          class="menu-btn"
-        >
-          <i class="fas fa-user-circle" />
-          <i
-            v-if="menuOpen"
-            class="fas fa-caret-up"
-          />
-          <i
-            v-else
-            class="fas fa-caret-down"
-          />
-        </button>
-      </div>
+      <button
+        @click.prevent="toggleMenu"
+        class="menu-btn"
+      >
+        <i class="fas fa-user-circle" />
+        <i
+          v-if="menuOpen"
+          class="fas fa-caret-up"
+        />
+        <i
+          v-else
+          class="fas fa-caret-down"
+        />
+      </button>
+    </div>
+    <div
+      v-if="menuOpen"
+      id="dropdown-content"
+    >
+      <router-link
+        class="link"
+        to="/settings"
+      >Settings</router-link>
     </div>
   </nav>
 </template>
@@ -39,6 +46,22 @@ export default {
   },
   computed: {
     ...mapGetters(["isAuthenticated"])
+  },
+  methods: {
+    toggleMenu() {
+      this.menuOpen = !this.menuOpen;
+    },
+    closeMenu(e) {
+      if (!this.$el.contains(e.target)) {
+        this.menuOpen = false;
+      }
+    }
+  },
+  created() {
+    window.addEventListener("click", this.closeMenu);
+  },
+  beforeDestroy() {
+    window.removeEventListener("click", this.closeMenu);
   }
 };
 </script>
@@ -49,6 +72,7 @@ nav {
   display: flex;
   align-items: center;
   padding: 0 10%;
+  position: relative;
 }
 
 .branding {
@@ -78,6 +102,16 @@ nav {
     color: #80f0f0;
     cursor: pointer;
   }
+}
+
+nav > #dropdown-content {
+  background-color: lightcoral;
+  position: absolute;
+  min-width: 100vw;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 100;
 }
 
 @media screen and (min-width: 600px) {
