@@ -1,12 +1,39 @@
 <template>
   <nav>
-    <router-link class="branding" to="/">Address Book</router-link>
-    <router-link class="link" to="/register">Register</router-link>
+    <router-link
+      class="branding"
+      :to="isAuthenticated ? '/dashboard' : '/'"
+    >Address Book</router-link>
+    <div
+      id="dropdown"
+      v-if="isAuthenticated"
+    >
+      <div id="dropdown-menu">
+        <button
+          @click="menuOpen = !menuOpen"
+          class="menu-btn"
+        >
+          <i class="fas fa-user-circle" />
+          <i class="fas fa-caret-down" />
+        </button>
+      </div>
+    </div>
   </nav>
 </template>
 
 <script>
-export default {};
+import { mapGetters } from "vuex";
+
+export default {
+  data() {
+    return {
+      menuOpen: false
+    };
+  },
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -30,7 +57,22 @@ nav {
   text-decoration: none;
 
   &:hover {
-    color: gray;
+    color: #80f0f0;
   }
+}
+
+.menu-btn {
+  background: lightcoral;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+
+  &:hover {
+    color: #80f0f0;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 600px) {
 }
 </style>
