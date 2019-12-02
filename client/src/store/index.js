@@ -3,9 +3,12 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+import user from "./modules/user";
+import contacts from "./modules/contacts";
+
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+  modules: {
+    user,
+    contacts
+  }
 });
