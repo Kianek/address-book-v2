@@ -12,16 +12,21 @@ const mutations = {
   }
 };
 
-const mutations = {
-  login() {
-    // TODO: hook up axios
-  },
-  logout() {
-    // TODO: hook up axios
+const getters = {
+  isAuthenticated(state) {
+    return state.isAuthenticated;
+  }
+};
+
+const actions = {
+  login({ commit }) {
+    commit("login");
   }
 };
 
 export default {
   state,
-  mutations
+  mutations,
+  actions,
+  getters
 };
