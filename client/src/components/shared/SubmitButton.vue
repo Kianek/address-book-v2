@@ -1,5 +1,8 @@
 <template>
-  <input type="submit" :value="value" />
+  <input
+    type="submit"
+    :value="value"
+  />
 </template>
 
 <script>

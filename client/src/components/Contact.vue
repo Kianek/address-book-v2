@@ -5,7 +5,10 @@
         <h3>{{ contact.firstName }} {{ contact.middleName ? contact.middleName : null }} {{ contact.lastName }}</h3>
       </div>
       <div class="contact-controls">
-        <router-link to="/edit" class="edit">
+        <router-link
+          to="/edit"
+          class="edit"
+        >
           <i class="fas fa-edit"></i>
         </router-link>
         <button class="delete">

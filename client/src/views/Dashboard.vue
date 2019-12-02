@@ -1,11 +1,17 @@
 <template>
   <Page>
     <h1>Contacts</h1>
-    <router-link to="/add" class="add">
+    <router-link
+      to="/add"
+      class="add"
+    >
       <i class="fas fa-user-plus"></i> Add
     </router-link>
     <ul class="contacts-list">
-      <li v-for="c in contacts" :key="c.id">
+      <li
+        v-for="c in contacts"
+        :key="c.id"
+      >
         <Contact :contact="c" />
       </li>
     </ul>

@@ -1,23 +1,59 @@
 <template>
   <Page>
     <div class="back-to-dashboard">
-      <router-link class="btn" to="/dashboard">
+      <router-link
+        class="btn"
+        to="/dashboard"
+      >
         <i class="fas fa-arrow-left" /> Back
       </router-link>
     </div>
     <h1>Add Contact</h1>
     <Form>
-      <Input v-model="firstName" placeholder="First Name" />
-      <Input v-model="middleName" placeholder="Middle Name" />
-      <Input v-model="lastName" placeholder="Last Name" />
-      <Input v-model="phone" placeholder="Phone" />
-      <Input v-model="email" placeholder="Email" />
-      <Input v-model="line1" placeholder="Line 1" />
-      <Input v-model="line2" placeholder="Line 2" />
-      <Input v-model="city" placeholder="City" />
-      <Input v-model="stateOrProvince" placeholder="State" />
-      <Input v-model="postalCode" placeholder="Zip" />
-      <Input type="submit" value="Create" />
+      <Input
+        v-model="firstName"
+        placeholder="First Name"
+      />
+      <Input
+        v-model="middleName"
+        placeholder="Middle Name"
+      />
+      <Input
+        v-model="lastName"
+        placeholder="Last Name"
+      />
+      <Input
+        v-model="phone"
+        placeholder="Phone"
+      />
+      <Input
+        v-model="email"
+        placeholder="Email"
+      />
+      <Input
+        v-model="line1"
+        placeholder="Line 1"
+      />
+      <Input
+        v-model="line2"
+        placeholder="Line 2"
+      />
+      <Input
+        v-model="city"
+        placeholder="City"
+      />
+      <Input
+        v-model="stateOrProvince"
+        placeholder="State"
+      />
+      <Input
+        v-model="postalCode"
+        placeholder="Zip"
+      />
+      <Input
+        type="submit"
+        value="Create"
+      />
     </Form>
   </Page>
 </template>
