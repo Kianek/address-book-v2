@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
@@ -25,6 +26,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["login"]),
     submit: function(e) {
       e.preventDefault();
       this.isLoading = !this.isLoading;
@@ -32,6 +34,7 @@ export default {
       this.password = "";
 
       console.log("Signing in!");
+      this.login();
       setTimeout(() => this.$router.push("/dashboard"), 3000);
     }
   },
