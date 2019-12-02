@@ -14,7 +14,14 @@
           class="menu-btn"
         >
           <i class="fas fa-user-circle" />
-          <i class="fas fa-caret-down" />
+          <i
+            v-if="menuOpen"
+            class="fas fa-caret-up"
+          />
+          <i
+            v-else
+            class="fas fa-caret-down"
+          />
         </button>
       </div>
     </div>
