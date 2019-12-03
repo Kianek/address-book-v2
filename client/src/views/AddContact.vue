@@ -43,10 +43,7 @@
         v-model="postalCode"
         placeholder="Zip"
       />
-      <Input
-        type="submit"
-        value="Create"
-      />
+      <SubmitButton value="Create" />
     </Form>
   </Page>
 </template>
@@ -56,6 +53,7 @@ import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import BackButton from "@/components/shared/BackButton.vue";
+import SubmitButton from "@/components/shared/SubmitButton.vue";
 
 export default {
   data() {
@@ -76,27 +74,8 @@ export default {
     Page,
     Form,
     Input,
-    BackButton
+    BackButton,
+    SubmitButton
   }
 };
 </script>
-
-<style scoped lang="scss">
-.back-to-dashboard {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.btn {
-  // TODO: Use a more attractive bg color
-  background-color: #0f6fff;
-  border-radius: 5px;
-  color: white;
-  padding: 0.5em 0.7em;
-  text-decoration: none;
-}
-</style>
