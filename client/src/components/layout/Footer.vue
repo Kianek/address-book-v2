@@ -12,10 +12,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@import "@/_colors.scss";
+
 footer {
-  background-color: lightcoral;
-  color: white;
+  background-color: $coral;
+  color: $white;
   padding: 1rem;
   text-align: center;
   width: 100%;
