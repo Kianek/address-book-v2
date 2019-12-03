@@ -16,13 +16,24 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+@import "@/_colors.scss";
+@import "@/_mixins.scss";
+
 input {
-  border: none;
-  font-size: 1.2em;
+  border: solid 1px $light-gray;
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 0 auto 1em;
+  padding: 0.5em;
+  min-width: 200px;
+  width: 80%;
 
   &:hover {
+    @include set-box-shadow($gray);
+
     cursor: pointer;
+    transition: 0.2s;
   }
 }
 </style>
