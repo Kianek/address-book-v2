@@ -25,19 +25,21 @@
         v-model="confirmPassword"
         placeholder="Confirm Password"
       />
-      <Input
+      <!-- <Input
         type="submit"
         value="Create Account"
-      />
+      /> -->
+      <SubmitButton value="Create Account" />
     </Form>
   </Page>
 </template>
 
 <script>
-import Page from "@/components/layout/Page";
-import Form from "@/components/shared/Form";
-import Input from "@/components/shared/Input";
-import BackButton from "@/components/shared/BackButton";
+import Page from "@/components/layout/Page.vue";
+import Form from "@/components/shared/Form.vue";
+import Input from "@/components/shared/Input.vue";
+import BackButton from "@/components/shared/BackButton.vue";
+import SubmitButton from "@/components/shared/SubmitButton.vue";
 
 export default {
   data() {
@@ -65,7 +67,17 @@ export default {
     Page,
     Form,
     Input,
-    BackButton
+    BackButton,
+    SubmitButton
   }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "@/_colors.scss";
+@import "@/_mixins.scss";
+
+input[type="submit"] :hover {
+  @include set-box-shadow($gray);
+}
+</style>
