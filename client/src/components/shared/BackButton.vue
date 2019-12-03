@@ -17,7 +17,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+@import "@/_colors.scss";
+@import "@/_mixins.scss";
+
 .back-to-dashboard {
   display: flex;
   flex-direction: row;
@@ -28,17 +31,16 @@ export default {
 }
 
 .btn {
-  background-color: #fff;
-  border: solid 1px #0f6fff;
+  background-color: $white;
+  border: solid 1px $blue;
   border-radius: 5px;
-  color: #0f6fff;
+  color: $blue;
   padding: 0.5em 0.7em;
   text-decoration: none;
 
   &:hover {
-    border: solid 1px #0f6fff;
-    box-shadow: -1px -1px 5px rgba(15, 111, 255, 0.4),
-      2px 2px 5px rgba(15, 111, 255, 0.4);
+    border: solid 1px $blue;
+    @include set-box-shadow($blue);
     transition: 0.2s;
   }
 }
