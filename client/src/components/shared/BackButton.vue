@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .back-to-dashboard {
   display: flex;
   flex-direction: row;
@@ -28,10 +28,18 @@ export default {
 }
 
 .btn {
-  background-color: #0f6fff;
+  background-color: #fff;
+  border: solid 1px #0f6fff;
   border-radius: 5px;
-  color: white;
+  color: #0f6fff;
   padding: 0.5em 0.7em;
   text-decoration: none;
+
+  &:hover {
+    border: solid 1px #0f6fff;
+    box-shadow: -1px -1px 5px rgba(15, 111, 255, 0.4),
+      2px 2px 5px rgba(15, 111, 255, 0.4);
+    transition: 0.2s;
+  }
 }
 </style>
