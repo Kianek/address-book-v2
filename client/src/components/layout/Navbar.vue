@@ -79,8 +79,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/_colors.scss";
+
 nav {
-  background-color: lightcoral;
+  background-color: $coral;
   display: flex;
   align-items: center;
   padding: 0 10%;
@@ -88,32 +90,32 @@ nav {
 }
 
 .branding {
-  color: white;
+  color: $white;
   font-size: 1.7rem;
   margin-right: auto;
   text-decoration: none;
 }
 
 .link {
-  color: white;
+  color: $white;
   font-size: 1.2rem;
   padding: 0.25em 0.5em;
   text-align: center;
   text-decoration: none;
 
   &:hover {
-    color: #80f0f0;
+    color: $light-blue;
   }
 }
 
 .menu-btn {
-  background: lightcoral;
+  background: $coral;
   border: none;
-  color: white;
+  color: $white;
   font-size: 1.2rem;
 
   &:hover {
-    color: #80f0f0;
+    color: $light-blue;
     cursor: pointer;
   }
 }
@@ -121,7 +123,7 @@ nav {
 nav > #dropdown-content {
   display: flex;
   flex-direction: column;
-  background-color: lightcoral;
+  background-color: $coral;
   position: absolute;
   min-width: 100vw;
   left: 0;
