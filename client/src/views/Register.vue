@@ -1,5 +1,6 @@
 <template>
   <Page>
+    <BackButton url="/" />
     <h1>Register</h1>
     <Form :submit="createAccount">
       <Input
@@ -36,6 +37,7 @@
 import Page from "@/components/layout/Page";
 import Form from "@/components/shared/Form";
 import Input from "@/components/shared/Input";
+import BackButton from "@/components/shared/BackButton";
 
 export default {
   data() {
@@ -62,7 +64,8 @@ export default {
   components: {
     Page,
     Form,
-    Input
+    Input,
+    BackButton
   }
 };
 </script>

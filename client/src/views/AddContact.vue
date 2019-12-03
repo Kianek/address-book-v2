@@ -1,13 +1,6 @@
 <template>
   <Page>
-    <div class="back-to-dashboard">
-      <router-link
-        class="btn"
-        to="/dashboard"
-      >
-        <i class="fas fa-arrow-left" /> Back
-      </router-link>
-    </div>
+    <BackButton url="/dashboard" />
     <h1>Add Contact</h1>
     <Form>
       <Input
@@ -62,6 +55,7 @@
 import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
+import BackButton from "@/components/shared/BackButton.vue";
 
 export default {
   data() {
@@ -81,7 +75,8 @@ export default {
   components: {
     Page,
     Form,
-    Input
+    Input,
+    BackButton
   }
 };
 </script>
