@@ -27,25 +27,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/_colors.scss";
+
 input {
-  // TODO: extract styles to another file
-  border: solid 1px lightgray;
+  border: solid 1px $light-gray;
   border-radius: 5px;
   font-size: 1em;
   margin: 0 auto 1em;
   padding: 0.5em;
   min-width: 200px;
   width: 80%;
-
-  &[type="submit"] {
-    cursor: pointer;
-    transition: 0.2s;
-  }
-
-  &[type="submit"]:hover {
-    border-color: gray;
-    background-color: gray;
-    color: white;
-  }
 }
 </style>
