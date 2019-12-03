@@ -11,16 +11,13 @@
         type="password"
         placeholder="Password"
       />
-      <Input
+      <SubmitButton
         v-if="!isLoading"
-        type="submit"
         value="Sign In"
       />
-      <Input
+      <SubmitButton
         v-else
-        type="submit"
-        value="Signing In..."
-        classes="cursor-disabled"
+        value="Loading..."
       />
     </Form>
     <router-link
@@ -35,6 +32,7 @@ import { mapActions } from "vuex";
 import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
+import SubmitButton from "@/components/shared/SubmitButton.vue";
 
 export default {
   data() {
@@ -60,7 +58,8 @@ export default {
   components: {
     Page,
     Form,
-    Input
+    Input,
+    SubmitButton
   }
 };
 </script>
