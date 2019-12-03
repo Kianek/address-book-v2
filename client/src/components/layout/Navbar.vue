@@ -28,15 +28,21 @@
       id="dropdown-content"
     >
       <router-link
+        @click.native="menuOpen = false"
         class="link"
         to="/settings"
       >Settings</router-link>
+      <router-link
+        @click.native.prevent="signOut"
+        class="link"
+        to="/"
+      >Sign Out</router-link>
     </div>
   </nav>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -48,6 +54,7 @@ export default {
     ...mapGetters(["isAuthenticated"])
   },
   methods: {
+    ...mapActions(["logout"]),
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
     },
@@ -55,6 +62,11 @@ export default {
       if (!this.$el.contains(e.target)) {
         this.menuOpen = false;
       }
+    },
+    signOut() {
+      this.logout();
+      this.menuOpen = false;
+      this.$router.replace("/").catch(err => console.error(err));
     }
   },
   created() {
@@ -85,6 +97,8 @@ nav {
 .link {
   color: white;
   font-size: 1.2rem;
+  padding: 0.25em 0.5em;
+  text-align: center;
   text-decoration: none;
 
   &:hover {
@@ -105,6 +119,8 @@ nav {
 }
 
 nav > #dropdown-content {
+  display: flex;
+  flex-direction: column;
   background-color: lightcoral;
   position: absolute;
   min-width: 100vw;
