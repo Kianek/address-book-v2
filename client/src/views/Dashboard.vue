@@ -76,6 +76,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 25rem;
   margin-top: 1rem;
   overflow-y: auto;
   padding: 0;
@@ -83,7 +84,6 @@ h1 {
   width: 100%;
 
   li {
-    width: 50%;
     min-width: 200px;
     max-width: 300px;
   }
