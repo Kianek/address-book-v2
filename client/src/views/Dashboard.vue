@@ -51,23 +51,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/_colors.scss";
+
 h1 {
   margin-bottom: 2rem;
 }
 .add {
-  background-color: #fff;
+  background-color: $white;
   border: none;
   border-radius: 5px;
-  border: solid 1px lightgray;
-  // color: #00d300;
-  color: #000;
+  border: solid 1px $light-gray;
+  color: $black;
   padding: 0.5em;
   text-decoration: none;
   transition: 0.2s;
 
   &:hover {
-    border: 1px solid #00d300;
-    color: #00d300;
+    border: 1px solid $green;
+    color: $green;
   }
 }
 
