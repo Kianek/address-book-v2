@@ -13,5 +13,6 @@
   height: 100%;
   justify-content: center;
   margin: auto;
+  width: 80%;
 }
 </style>
