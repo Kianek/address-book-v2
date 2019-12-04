@@ -1,16 +1,10 @@
 <template>
   <Page>
-    <div class="back-to-dashboard">
-      <router-link
-        class="btn"
-        to="/dashboard"
-      >
-        <i class="fas fa-arrow-left" /> Back
-      </router-link>
-    </div>
+    <BackButton url="/dashboard" />
     <h1>Add Contact</h1>
     <Form :submit="handleSubmit">
       <Input
+        required
         v-model="firstName"
         placeholder="First Name"
       />
@@ -19,6 +13,7 @@
         placeholder="Middle Name"
       />
       <Input
+        required
         v-model="lastName"
         placeholder="Last Name"
       />
@@ -50,10 +45,7 @@
         v-model="postalCode"
         placeholder="Zip"
       />
-      <Input
-        type="submit"
-        value="Create"
-      />
+      <SubmitButton value="Update Contact" />
     </Form>
   </Page>
 </template>
@@ -62,6 +54,8 @@
 import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
+import BackButton from "@/components/shared/BackButton.vue";
+import SubmitButton from "@/components/shared/SubmitButton.vue";
 
 export default {
   data() {
@@ -87,12 +81,16 @@ export default {
   components: {
     Page,
     Form,
-    Input
+    Input,
+    BackButton,
+    SubmitButton
   }
 };
 </script>
 
 <style scoped lang="scss">
+@import "@/_colors.scss";
+
 .back-to-dashboard {
   display: flex;
   flex-direction: row;
@@ -103,10 +101,9 @@ export default {
 }
 
 .btn {
-  // TODO: Use a more attractive bg color
-  background-color: #0f6fff;
+  background-color: $blue;
   border-radius: 5px;
-  color: white;
+  color: $white;
   padding: 0.5em 0.7em;
   text-decoration: none;
 }
