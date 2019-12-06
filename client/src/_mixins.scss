@@ -4,6 +4,5 @@
 }
 
 @mixin set-focus($color) {
-  box-shadow: -1px -1px 5px rgba($color, 0.9),
-      2px 2px 5px rgba($color, 0.9);
+  border: solid 3px $color;
 }
