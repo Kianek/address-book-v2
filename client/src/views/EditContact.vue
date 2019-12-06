@@ -1,7 +1,7 @@
 <template>
   <Page>
     <BackButton url="/dashboard" />
-    <h1>Add Contact</h1>
+    <h1>Edit Contact</h1>
     <Form :submit="handleSubmit">
       <Input
         required
