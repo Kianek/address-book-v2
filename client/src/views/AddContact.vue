@@ -4,6 +4,8 @@
     <h1>Add Contact</h1>
     <Form>
       <Input
+        required
+        min="2"
         v-model="firstName"
         placeholder="First Name"
       />
@@ -12,6 +14,8 @@
         placeholder="Middle Name"
       />
       <Input
+        required
+        min="2"
         v-model="lastName"
         placeholder="Last Name"
       />
@@ -24,22 +28,27 @@
         placeholder="Email"
       />
       <Input
+        min="6"
         v-model="line1"
         placeholder="Line 1"
       />
       <Input
+        min="6"
         v-model="line2"
         placeholder="Line 2"
       />
       <Input
+        min="3"
         v-model="city"
         placeholder="City"
       />
       <Input
+        min="3"
         v-model="stateOrProvince"
         placeholder="State"
       />
       <Input
+        min="3"
         v-model="postalCode"
         placeholder="Zip"
       />
@@ -67,7 +76,8 @@ export default {
       line2: "",
       city: "",
       stateOrProvince: "",
-      postalCode: ""
+      postalCode: "",
+      errors: []
     };
   },
   components: {
