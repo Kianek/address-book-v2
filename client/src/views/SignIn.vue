@@ -9,7 +9,7 @@
         placeholder="Email"
       />
       <Input
-        :min="2"
+        :min="6"
         v-model="password"
         type="password"
         placeholder="Password"
