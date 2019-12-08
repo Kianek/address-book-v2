@@ -102,6 +102,7 @@ nav {
   padding: 0.25em 0.5em;
   text-align: center;
   text-decoration: none;
+  transition: 0.2s;
 
   &:hover {
     color: $light-blue;
@@ -113,6 +114,7 @@ nav {
   border: none;
   color: $white;
   font-size: 1.2rem;
+  transition: 0.2s;
 
   &:hover {
     color: $light-blue;
@@ -120,18 +122,29 @@ nav {
   }
 }
 
-nav > #dropdown-content {
-  display: flex;
-  flex-direction: column;
-  background-color: $coral;
-  position: absolute;
-  min-width: 100vw;
-  left: 0;
-  top: 100%;
-  width: 100%;
-  z-index: 100;
+@media screen and (max-width: 599px) {
+  nav > #dropdown-content {
+    display: flex;
+    flex-direction: column;
+    background-color: $coral;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    z-index: 100;
+  }
 }
 
 @media screen and (min-width: 600px) {
+  nav > #dropdown-content {
+    display: flex;
+    flex-direction: column;
+    background-color: $coral;
+    position: absolute;
+    width: 250px;
+    right: 0;
+    top: 100%;
+    z-index: 100;
+  }
 }
 </style>
