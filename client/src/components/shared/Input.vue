@@ -1,6 +1,9 @@
 <template>
   <div>
-    <p id="errorMsg">{{ error }}</p>
+    <p
+      v-if="errors.length > 0"
+      id="errorMsg"
+    >{{ errors.join(", ") }}</p>
     <input
       :type="type"
       :value="value"
@@ -20,7 +23,7 @@ export default {
       classObj: {
         error: false
       },
-      error: ""
+      errors: []
     };
   },
   model: {
@@ -54,17 +57,15 @@ export default {
   methods: {
     isInvalidEmail(val) {
       if (!isEmail(val)) {
-        this.error = "Must be a valid email";
+        this.errors.push("Must be a valid email");
         return true;
       }
 
       return false;
     },
     inputIsTooShort(val) {
-      if (val <= this.min) {
-        this.error = `Must be at least ${this.min} character${
-          this.min > 1 ? "s" : null
-        }`;
+      if (val < this.min) {
+        this.errors.push(`Must be at least ${this.min} characters`);
         return true;
       }
 
@@ -72,7 +73,7 @@ export default {
     },
     inputIsTooLong(val) {
       if (val > this.max) {
-        this.error = "Too long";
+        this.errors.push(`Must be less than ${this.max} characters`);
         return true;
       }
 
@@ -81,19 +82,24 @@ export default {
   },
   watch: {
     value: function(val) {
-      const errors = [this.inputIsTooShort, this.inputIsTooLong];
+      const checkErrors = [this.inputIsTooShort, this.inputIsTooLong];
 
       // If input is an email field, add email validation
       if (this.email) {
-        errors.push(this.isInvalidEmail);
+        checkErrors.push(this.isInvalidEmail);
       }
 
-      // Check whether value is too short or long
-      this.classObj.error = errors.some(func => func(val));
+      this.errors = [];
+      // Validate the current input value
+      // this.classObj.error = errors.some(func => func(val));
+      checkErrors.forEach(func => {
+        if (func(val)) {
+          this.classObj.error = true;
+        }
+      });
 
-      // If no input error, remove any error message
-      if (!this.classObj.error) {
-        this.error = "";
+      if (this.errors.length <= 0) {
+        this.classObj.error = false;
       }
     }
   }
