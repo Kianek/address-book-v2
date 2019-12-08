@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/globals.scss";
+@import "@/_globals.scss";
 
 .contact-preview {
   border: solid 1px lightgray;
