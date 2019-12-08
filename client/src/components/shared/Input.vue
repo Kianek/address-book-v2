@@ -64,7 +64,7 @@ export default {
       return false;
     },
     inputIsTooShort(val) {
-      if (val < this.min) {
+      if (val.length < this.min) {
         this.errors.push(`Must be at least ${this.min} characters`);
         return true;
       }
@@ -72,7 +72,7 @@ export default {
       return false;
     },
     inputIsTooLong(val) {
-      if (val > this.max) {
+      if (val.length > this.max) {
         this.errors.push(`Must be less than ${this.max} characters`);
         return true;
       }
@@ -91,7 +91,6 @@ export default {
 
       this.errors = [];
       // Validate the current input value
-      // this.classObj.error = errors.some(func => func(val));
       checkErrors.forEach(func => {
         if (func(val)) {
           this.classObj.error = true;
