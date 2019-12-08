@@ -3,22 +3,18 @@
     <h1>Sign In</h1>
     <Form :submit="submit">
       <Input
+        :min="6"
+        email
         v-model="email"
         placeholder="Email"
       />
       <Input
+        :min="2"
         v-model="password"
         type="password"
         placeholder="Password"
       />
-      <SubmitButton
-        v-if="!isLoading"
-        value="Sign In"
-      />
-      <SubmitButton
-        v-else
-        value="Loading..."
-      />
+      <SubmitButton :value="!isLoading ? 'Sign In' : 'Loading...'" />
     </Form>
     <router-link
       class="link"
