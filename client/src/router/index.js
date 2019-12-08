@@ -35,7 +35,12 @@ const routes = [
     path: "/settings",
     name: "settings",
     component: () => import("../views/Settings.vue"),
-  }
+  },
+  {
+    path: "/change-email",
+    name: "ChangeEmail",
+    component: () => import("../views/ChangeEmail.vue"),
+  },
 ];
 
 const router = new VueRouter({
