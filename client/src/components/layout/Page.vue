@@ -16,4 +16,10 @@
   margin-top: 2rem;
   width: 80%;
 }
+
+@media screen and (min-width: 600px) {
+  #page {
+    width: 60%;
+  }
+}
 </style>
