@@ -14,7 +14,10 @@
         type="password"
         placeholder="Password"
       />
-      <SubmitButton :value="!isLoading ? 'Sign In' : 'Loading...'" />
+      <SubmitButton
+        value="Sign In"
+        :loading="isLoading"
+      />
     </Form>
     <router-link
       class="link"
