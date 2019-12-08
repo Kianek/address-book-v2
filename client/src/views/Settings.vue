@@ -31,16 +31,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/_colors.scss";
 @import "@/_mixins.scss";
+@import "@/_globals.scss";
 
 .settings-panel {
-  display: flex;
-  flex-direction: column;
-  border: solid 1px $gray;
-  border-radius: 5px;
-  margin-bottom: auto;
-  max-width: 500px;
+  @extend %panel;
   text-align: center;
-  width: 75%;
 
   a {
     border-bottom: solid 1px $light-gray;
@@ -68,7 +63,7 @@ export default {
 
     &:hover {
       background-color: rgba($red, 0.4);
-      box-shadow: -4px -4px 5px rgba($red, 0.2) inset,
+      box-shadow: -4px -4px 3px rgba($red, 0.3) inset,
         4px 4px 5px rgba($red, 0.2) inset;
       cursor: pointer;
     }
