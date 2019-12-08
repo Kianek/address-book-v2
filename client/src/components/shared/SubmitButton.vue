@@ -1,7 +1,8 @@
 <template>
   <input
     type="submit"
-    :value="value"
+    :class="loading ? 'loading' : ''"
+    :value="!loading ? value : 'Signing in...'"
   />
 </template>
 
@@ -11,6 +12,10 @@ export default {
     value: {
       type: String,
       default: "Submit"
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -34,6 +39,15 @@ input {
 
     cursor: pointer;
     transition: 0.2s;
+  }
+
+  &.loading {
+    background-color: darken($light-gray, 0.1);
+    cursor: not-allowed;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
 </style>
