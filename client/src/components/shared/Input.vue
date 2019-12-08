@@ -37,7 +37,7 @@ export default {
     },
     min: {
       type: Number,
-      default: 1
+      default: 0
     },
     email: {
       type: Boolean,
@@ -82,23 +82,25 @@ export default {
   },
   watch: {
     value: function(val) {
-      const checkErrors = [this.inputIsTooShort, this.inputIsTooLong];
+      if (this.required || this.min > 0) {
+        const checkErrors = [this.inputIsTooShort, this.inputIsTooLong];
 
-      // If input is an email field, add email validation
-      if (this.email) {
-        checkErrors.push(this.isInvalidEmail);
-      }
-
-      this.errors = [];
-      // Validate the current input value
-      checkErrors.forEach(func => {
-        if (func(val)) {
-          this.classObj.error = true;
+        // If input is an email field, add email validation
+        if (this.email) {
+          checkErrors.push(this.isInvalidEmail);
         }
-      });
 
-      if (this.errors.length <= 0) {
-        this.classObj.error = false;
+        this.errors = [];
+        // Validate the current input value
+        checkErrors.forEach(func => {
+          if (func(val)) {
+            this.classObj.error = true;
+          }
+        });
+
+        if (this.errors.length <= 0) {
+          this.classObj.error = false;
+        }
       }
     }
   }
