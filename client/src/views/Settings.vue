@@ -62,7 +62,7 @@ export default {
     transition: 0.2s;
 
     &:hover {
-      background-color: rgba($red, 0.5);
+      background-color: rgba($red, 0.4);
       color: darken($red, 0.8);
       cursor: pointer;
     }
