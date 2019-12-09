@@ -25,10 +25,6 @@
         v-model="confirmPassword"
         placeholder="Confirm Password"
       />
-      <!-- <Input
-        type="submit"
-        value="Create Account"
-      /> -->
       <SubmitButton value="Create Account" />
     </Form>
   </Page>
