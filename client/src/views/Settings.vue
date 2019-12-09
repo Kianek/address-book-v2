@@ -62,9 +62,8 @@ export default {
     transition: 0.2s;
 
     &:hover {
-      background-color: rgba($red, 0.4);
-      box-shadow: -4px -4px 3px rgba($red, 0.3) inset,
-        4px 4px 5px rgba($red, 0.2) inset;
+      background-color: rgba($red, 0.5);
+      color: darken($red, 0.8);
       cursor: pointer;
     }
   }
