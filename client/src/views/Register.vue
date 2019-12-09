@@ -48,11 +48,10 @@ export default {
     };
   },
   methods: {
-    createAccount: function(e) {
-      e.preventDefault();
-      // Once data have been sent to the server, reset the fields
+    createAccount: function() {
       console.log("creating account");
       this.resetFields();
+      this.$router.push("/");
     },
     resetFields: function() {
       const keys = Object.keys(this.$data);
