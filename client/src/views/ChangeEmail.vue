@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import Page from "@/components/layout/Page.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
+import Page from "@/components/layout/Page.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
 
 export default {
@@ -36,9 +36,9 @@ export default {
   },
   components: {
     BackButton,
-    Page,
     Form,
     Input,
+    Page,
     SubmitButton
   }
 };
