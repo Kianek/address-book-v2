@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('cookie-session');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const passport = require('passport');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -13,6 +14,7 @@ const app = express();
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
