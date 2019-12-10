@@ -1,7 +1,7 @@
 <template>
   <input
     type="submit"
-    :class="loading ? 'loading' : ''"
+    :class="loading || disabled ? 'loading' : ''"
     :value="!loading ? value : 'Signing in...'"
   />
 </template>
@@ -12,6 +12,10 @@ export default {
     value: {
       type: String,
       default: "Submit"
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     loading: {
       type: Boolean,
