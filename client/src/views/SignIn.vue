@@ -38,7 +38,11 @@ export default {
     return {
       email: "",
       password: "",
-      isLoading: false
+      isLoading: false,
+      auth: {
+        status: undefined,
+        message: ""
+      }
     };
   },
   methods: {
@@ -46,12 +50,14 @@ export default {
     submit: function(e) {
       e.preventDefault();
       this.isLoading = !this.isLoading;
-      this.email = "";
-      this.password = "";
 
-      console.log("Signing in!");
-      this.login();
-      setTimeout(() => this.$router.push("/dashboard"), 3000);
+      const emailEmpty = this.email.length <= 0;
+      const passwordEmpty = this.password.length <= 0;
+      if (emailEmpty || passwordEmpty) return;
+
+      this.login({ email: this.email, password: this.password }).then(() => {
+        this.$router.replace("/dashboard").catch(err => console.error(err));
+      });
     }
   },
   components: {
