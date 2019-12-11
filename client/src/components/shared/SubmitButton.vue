@@ -36,7 +36,7 @@ input {
   margin: 0 auto 1em;
   padding: 0.5em;
   min-width: 200px;
-  width: 80%;
+  width: inherit;
 
   &:hover {
     @include set-box-shadow($gray);
