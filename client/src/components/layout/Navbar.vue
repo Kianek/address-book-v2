@@ -64,9 +64,11 @@ export default {
       }
     },
     signOut() {
-      this.logout();
-      this.menuOpen = false;
-      this.$router.replace("/").catch(err => console.error(err));
+      this.logout()
+        .then(() => {
+          this.menuOpen = false;
+        })
+        .catch(err => console.error(err));
     }
   },
   created() {
