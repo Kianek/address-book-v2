@@ -55,9 +55,11 @@ export default {
       const passwordEmpty = this.password.length <= 0;
       if (emailEmpty || passwordEmpty) return;
 
-      this.login({ email: this.email, password: this.password }).then(() => {
-        this.$router.replace("/dashboard").catch(err => console.error(err));
-      });
+      this.login({ email: this.email, password: this.password })
+        .then(() => {
+          this.$router.replace("/dashboard").catch(err => console.error(err));
+        })
+        .catch(err => console.error(err));
     }
   },
   components: {
