@@ -35,15 +35,15 @@ const actions = {
     })
   },
   logout({ commit }) {
-    axios.get('/auth/logout')
-      .then(() => {
-        commit(LOGOUT);
-        // Redirect to landing page after signing out
-        this.$router.replace('/')
-          .catch(err => console.error(err));
-      })
-      .catch(err => console.error(err));
-  },
+    return new Promise((resolve, reject) => {
+      axios.get('/auth/logout')
+        .then(() => {
+          commit(LOGOUT);
+          resolve();
+        })
+        .catch(err => reject(err));
+    })
+  }
 };
 
 export default {
