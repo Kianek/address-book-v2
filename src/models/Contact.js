@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     line1: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 6,
       },
@@ -42,30 +42,21 @@ module.exports = (sequelize, DataTypes) => {
     line2: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        min: 6,
-      },
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         min: 3,
       },
     },
     stateOrProvince: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        min: 3,
-      },
+      allowNull: true,
     },
     postalCode: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        min: 3,
-      },
+      allowNull: true,
       set(value) {
         this.setDataValue('postalCode', value.toString().toUpperCase());
       },
