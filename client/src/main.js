@@ -5,7 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-axios.defaults.baseURL = "http://localhost:5001";
+axios.defaults.baseURL = "http://localhost:8080";
 Vue.use(VueAxios, axios);
 
 new Vue({
