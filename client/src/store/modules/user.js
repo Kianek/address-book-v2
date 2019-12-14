@@ -14,12 +14,21 @@ const mutations = {
   [LOGOUT](state) {
     state.isAuthenticated = false;
     state.user = {};
-  }
+  },
+  [CHANGE_EMAIL](state, payload) {
+    state.user = payload.user;
+  },
 };
 
 const getters = {
   isAuthenticated(state) {
     return state.isAuthenticated;
+  },
+  getEmail(state) {
+    return state.user.email;
+  },
+  getUserId(state) {
+    return state.user.id;
   }
 };
 
@@ -43,6 +52,12 @@ const actions = {
         })
         .catch(err => reject(err));
     })
+  },
+  changePassword({ commit }) {
+    commit(CHANGE_PASSWORD);
+  },
+  deleteAccount({ commit }) {
+    commit(DELETE_ACCOUNT);
   }
 };
 
