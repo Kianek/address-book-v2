@@ -8,17 +8,23 @@
       <i class="fas fa-user-plus"></i> Add
     </router-link>
     <ul class="contacts-list">
-      <li
-        v-for="c in contacts"
-        :key="c.id"
-      >
-        <Contact :contact="c" />
-      </li>
+      <div v-if="contacts.length <= 0">
+        <p>No contacts yet. Try adding some!</p>
+      </div>
+      <div v-else>
+        <li
+          v-for="c in getAllContacts"
+          :key="c.id"
+        >
+          <Contact :contact="c" />
+        </li>
+      </div>
     </ul>
   </Page>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import Page from "@/components/layout/Page";
 import Contact from "@/components/Contact";
 
@@ -26,26 +32,29 @@ export default {
   name: "dashboard",
   data() {
     return {
-      contacts: [
-        {
-          id: 1,
-          firstName: "Bob",
-          middleName: "B.",
-          lastName: "Loblaw",
-          phone: "444-444-4444",
-          email: "bob@loblawlaw.com",
-          line1: "123 Street St",
-          line2: null,
-          city: "Soylandia",
-          stateOrProvince: "Pooregon",
-          postalCode: "97205"
-        }
-      ]
+      contacts: []
     };
+  },
+  computed: {
+    ...mapGetters(["getAllContacts"])
+  },
+  methods: {
+    ...mapActions(["loadContacts"])
   },
   components: {
     Page,
     Contact
+  },
+  async mounted() {
+    try {
+      await this.loadContacts();
+      this.contacts = this.getAllContacts;
+      await this.$nextTick();
+    } catch (err) {
+      console.error(err);
+    }
+    this.loadContacts().catch(err => console.error(err));
+    this.contacts = this.getAllContacts;
   }
 };
 </script>
