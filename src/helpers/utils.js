@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 
 // Determine which configured models to load based on development environment
 function loadModels() {
-  if (process.env.PRODUCTION === true) {
+  if (process.env.PRODUCTION) {
     return ({ User, Contact } = require('../config/database'));
   } else {
     return ({ User, Contact } = require('../test/test-db'));
@@ -37,7 +37,7 @@ function configureSequelize(sequelize, DataTypes) {
 
   User.hasMany(Contact);
 
-  sequelize.sync({ force: true, logging: false });
+  sequelize.sync({ logging: false });
 
   return [User, Contact];
 }
