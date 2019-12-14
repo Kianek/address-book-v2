@@ -1,6 +1,5 @@
 const express = require('express');
-const session = require('cookie-session');
-const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const cors = require('cors');
 const passport = require('passport');
 const morgan = require('morgan');
@@ -9,21 +8,22 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
+app.use(cors());
 
 // Configure middleware
 app.use(helmet());
 app.use(morgan('combined'));
-app.use(cookieParser());
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
-    name: 'cookie-sesh',
-    keys: [process.env.COOKIE_SECRET],
-
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
     // Expires in 1 hour
-    maxAge: 60 * 60 * 1000,
+    cookie: {
+      maxAge: 60 * 60 * 1000,
+    }
   })
 );
 
