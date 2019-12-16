@@ -1,4 +1,4 @@
-import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, SET_CURRENT_CONTACT, SET_LOADED_CONTACTS } from "./types.js";
+import { ADD_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, CLEAR_CURRENT_CONTACT, SET_CURRENT_CONTACT, SET_LOADED_CONTACTS } from "./types.js";
 import axios from "axios";
 
 const state = {
@@ -10,8 +10,8 @@ const getters = {
   getAllContacts(state) {
     return state.contacts;
   },
-  getSelectedContact: state => id => {
-    return state.contacts.find(contact => contact.id === id);
+  getSelectedContact: state => {
+    return state.selectedContact;
   }
 };
 
@@ -26,6 +26,9 @@ const mutations = {
         state.selectedContact = {};
       }
     });
+  },
+  [CLEAR_CURRENT_CONTACT](state) {
+    state.selectedContact = {};
   },
   [SET_CURRENT_CONTACT](state, payload) {
     state.selectedContact = state.contacts.find(c => c.id === payload.id);
@@ -60,8 +63,18 @@ const actions = {
       .then(res => commit(UPDATE_CONTACT, { contact: res.data }))
       .catch(err => console.error(err));
   },
-  selectContact({ commit }, id) {
-    commit(SET_CURRENT_CONTACT, id);
+  clearSelectedContact({ commit }) {
+    commit(CLEAR_CURRENT_CONTACT);
+  },
+  async selectContact({ commit, state }, id) {
+    return new Promise((resolve, reject) => {
+      commit(SET_CURRENT_CONTACT, { id });
+      if (!state.selectedContact) {
+        reject("Unable to locate contact");
+      }
+
+      resolve();
+    })
   },
   deleteContact({ commit }, id) {
     axios.delete(`/contacts/${id}`, id)
