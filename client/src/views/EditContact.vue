@@ -115,14 +115,6 @@ export default {
       })
       .catch(err => console.error(err));
   },
-  beforeRouteUpdate(to, from, next) {
-    this.selectContact(parseInt(this.$route.params.id))
-      .then(() => {
-        this.loadForm();
-        next();
-      })
-      .catch(err => console.error(err));
-  },
   components: {
     Page,
     Form,
