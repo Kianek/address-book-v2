@@ -1,5 +1,6 @@
 <template>
   <div>
+    <p id="label">{{ label }}</p>
     <p
       v-if="errors.length > 0"
       id="errorMsg"
@@ -43,6 +44,7 @@ export default {
       type: Boolean,
       default: false
     },
+    label: String,
     placeholder: String,
     required: {
       type: Boolean,
@@ -114,6 +116,13 @@ export default {
 #errorMsg {
   color: $red;
   font-size: 0.5rem;
+}
+
+#label {
+  color: $gray;
+  font-weight: 600;
+  margin: 0.2rem;
+  text-align: center;
 }
 
 input {
