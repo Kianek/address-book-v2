@@ -101,7 +101,6 @@ export default {
       // those of the current contact.
       keys.forEach(key => (this.$data[key] = currentContact[key]));
 
-      console.log(this.$data);
       this.$nextTick().catch(err => console.error(err));
     },
     ...mapActions(["clearSelectedContact", "selectContact"])
