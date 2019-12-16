@@ -76,10 +76,18 @@ const actions = {
       resolve();
     })
   },
-  deleteContact({ commit }, id) {
-    axios.delete(`/contacts/${id}`, id)
-      .then(res => commit(DELETE_CONTACT, { id: res.data.id }))
-      .catch(err => console.error(err));
+  async deleteContact({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`/contacts/${id}`, id)
+        .then(res => {
+          commit(DELETE_CONTACT, { id: res.data.id });
+          resolve();
+        })
+        .catch(err => {
+          console.error(err);
+          reject();
+        });
+    })
   },
 };
 
