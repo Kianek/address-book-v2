@@ -25,7 +25,7 @@
       <Input
         :min="6"
         type="password"
-        placeholder="New Password"
+        placeholder="Password"
         v-model="password"
       />
       <Input
