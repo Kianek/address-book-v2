@@ -53,8 +53,6 @@ export default {
     } catch (err) {
       console.error(err);
     }
-    this.loadContacts().catch(err => console.error(err));
-    this.contacts = this.getAllContacts;
   }
 };
 </script>
