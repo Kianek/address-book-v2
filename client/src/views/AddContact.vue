@@ -30,6 +30,7 @@
       <Input
         label="Email"
         v-model="email"
+        email
         placeholder="Email"
       />
       <Input
