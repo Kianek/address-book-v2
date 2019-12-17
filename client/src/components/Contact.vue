@@ -1,17 +1,21 @@
 <template>
-  <div class="contact-preview">
+  <div class="contact">
     <div class="header">
       <div class="name">
         <h3>{{ contact.firstName }} {{ contact.middleName ? contact.middleName : null }} {{ contact.lastName }}</h3>
       </div>
       <div class="contact-controls">
         <router-link
-          to="/edit"
+          @click.native="select"
+          :to="`/${this.contact.id}/edit`"
           class="edit"
         >
           <i class="fas fa-edit"></i>
         </router-link>
-        <button class="delete">
+        <button
+          @click="del"
+          class="delete"
+        >
           <i class="fas fa-trash"></i>
         </button>
       </div>
@@ -29,14 +33,29 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   methods: {
-    deleteContact: function(e) {
-      e.preventDefault();
-    }
+    async del() {
+      try {
+        await this.deleteContact(this.contact.id);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    async select() {
+      try {
+        await this.selectContact(this.contact.id);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    ...mapActions(["deleteContact", "selectContact"])
   },
   props: {
     contact: {
+      id: Number,
       firstName: String,
       middleName: String,
       lastName: String,
@@ -55,7 +74,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/_globals.scss";
 
-.contact-preview {
+.contact {
   border: solid 1px lightgray;
   border-radius: 5px;
   margin-top: 1rem;
