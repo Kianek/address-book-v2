@@ -37,7 +37,7 @@ const mutations = {
     state.contacts = payload.contacts;
   },
   [DELETE_CONTACT](state, payload) {
-    state = state.contacts.filter(c => c.id !== payload.id);
+    state.contacts = state.contacts.filter(c => c.id !== payload.id);
   }
 };
 
@@ -79,8 +79,8 @@ const actions = {
   async deleteContact({ commit }, id) {
     return new Promise((resolve, reject) => {
       axios.delete(`/contacts/${id}`, id)
-        .then(res => {
-          commit(DELETE_CONTACT, { id: res.data.id });
+        .then(() => {
+          commit(DELETE_CONTACT, { id });
           resolve();
         })
         .catch(err => {
