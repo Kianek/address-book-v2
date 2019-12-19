@@ -18,6 +18,11 @@
         value="Sign In"
         :loading="isLoading"
       />
+      <FlashMessage
+        v-if="auth.status === false"
+        failure
+        :message="auth.message"
+      />
     </Form>
     <router-link
       class="link"
@@ -32,6 +37,7 @@ import Page from "@/components/layout/Page.vue";
 import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
 
 export default {
   data() {
@@ -41,32 +47,36 @@ export default {
       isLoading: false,
       auth: {
         status: undefined,
-        message: ""
+        message: "Email or password invalid"
       }
     };
   },
   methods: {
     ...mapActions(["login"]),
-    submit: function(e) {
-      e.preventDefault();
+    submit: function() {
+      // If the input fields are empty, do nothing.
+      if (this.email.length <= 0 || this.password.length <= 0) {
+        return;
+      }
+
       this.isLoading = !this.isLoading;
-
-      const emailEmpty = this.email.length <= 0;
-      const passwordEmpty = this.password.length <= 0;
-      if (emailEmpty || passwordEmpty) return;
-
       this.login({ email: this.email, password: this.password })
         .then(() => {
           this.$router.replace("/dashboard").catch(err => console.error(err));
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          // There was a problem authenticating, so display the flash message.
+          this.auth.status = this.isLoading = false;
+        });
     }
   },
   components: {
     Page,
     Form,
     Input,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
