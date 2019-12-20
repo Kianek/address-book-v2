@@ -38,10 +38,10 @@
         :disabled="disableBtn"
         value="Create Account"
       />
-      <p
-        v-if="registration.status !== undefined"
-        :class="registration.status ? 'success' : 'failure'"
-      >{{ registration.message }}</p>
+      <FlashMessage
+        :status="registration.status"
+        :message="registration.message"
+      />
     </Form>
   </Page>
 </template>
@@ -52,6 +52,7 @@ import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
 
 import { isEmpty } from "validator";
 
@@ -91,7 +92,11 @@ export default {
 
       // Make sure no fields are empty
       const anyFieldsAreEmpty = Object.values(user).some(val => isEmpty(val));
-      if (anyFieldsAreEmpty) return;
+      if (anyFieldsAreEmpty) {
+        this.registration.status = false;
+        this.registration.message = "Please fill in all fields";
+        return;
+      }
 
       this.axios
         .post("/users", user)
@@ -110,6 +115,7 @@ export default {
         .catch(err => {
           console.error(err);
           this.registration.status = false;
+          this.registration.message = "Error creating account...";
           return;
         });
     }
@@ -128,7 +134,8 @@ export default {
     Form,
     Input,
     BackButton,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
@@ -136,16 +143,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/_colors.scss";
 @import "@/_mixins.scss";
-
-.failure {
-  color: $red;
-  font-size: 1rem;
-}
-
-.success {
-  color: $green;
-  font-size: 1rem;
-}
 
 .error {
   color: $red;
