@@ -5,65 +5,70 @@
     <Form :submit="handleSubmit">
       <Input
         label="First Name"
-        required
         :min="2"
-        v-model="firstName"
+        v-model="contact.firstName"
         placeholder="First Name"
       />
       <Input
-        label="Middle Name"
-        v-model="middleName"
+        label="Middle Name (Optional)"
+        v-model="contact.middleName"
         placeholder="Middle Name"
       />
       <Input
         label="Last Name"
-        required
         :min="2"
-        v-model="lastName"
+        v-model="contact.lastName"
         placeholder="Last Name"
       />
       <Input
         label="Phone"
-        v-model="phone"
+        v-model="contact.phone"
         placeholder="Phone"
       />
       <Input
         label="Email"
-        v-model="email"
+        v-model="contact.email"
         email
         placeholder="Email"
       />
       <Input
         label="Line 1"
-        :min="6"
-        v-model="line1"
+        :min="3"
+        v-model="contact.line1"
         placeholder="Line 1"
       />
       <Input
         label="Line 2"
-        :min="6"
-        v-model="line2"
-        placeholder="Line 2"
+        v-model="contact.line2"
+        placeholder="Line 2 (Optional)"
       />
       <Input
         label="City"
         :min="3"
-        v-model="city"
+        v-model="contact.city"
         placeholder="City"
       />
       <Input
         label="State"
         :min="3"
-        v-model="stateOrProvince"
+        v-model="contact.stateOrProvince"
         placeholder="State"
       />
       <Input
         label="Zip"
         :min="3"
-        v-model="postalCode"
+        v-model="contact.postalCode"
         placeholder="Zip"
       />
-      <SubmitButton value="Create" />
+      <SubmitButton
+        :loading="contact.loading"
+        value="Create"
+      />
+      <FlashMessage
+        v-if="message.length > 0"
+        failure
+        :message="message"
+      />
     </Form>
   </Page>
 </template>
@@ -74,6 +79,7 @@ import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
 
 import { isEmpty } from "validator";
 import { mapActions, mapGetters } from "vuex";
@@ -81,17 +87,20 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      line1: "",
-      line2: "",
-      city: "",
-      stateOrProvince: "",
-      postalCode: "",
-      errors: []
+      contact: {
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        line1: "",
+        line2: "",
+        city: "",
+        stateOrProvince: "",
+        postalCode: ""
+      },
+      loading: false,
+      message: ""
     };
   },
   computed: {
@@ -100,29 +109,32 @@ export default {
   methods: {
     ...mapActions(["addContact"]),
     handleSubmit() {
-      if (isEmpty(this.firstName) || isEmpty(this.lastName)) {
-        // TODO: show flash message on error
+      // The values to filter out when validating input before submission.
+      const optionalValues = ["middleName", "line2"];
+
+      // The values required for submission of a valid contact.
+      const requiredValues = Object.keys(this.contact)
+        // If a given key does NOT equal any of the optional values,
+        // add it to the required values.
+        .filter(key => !optionalValues.some(optKey => key === optKey));
+
+      if (requiredValues.some(key => isEmpty(this.contact[key]))) {
+        this.message = "Please fill in the required fields";
         return;
       }
-      const newContact = {
-        firstName: this.firstName,
-        middleName: this.middleName || null,
-        lastName: this.lastName,
-        phone: this.phone || null,
-        email: this.email || null,
-        line1: this.line1 || null,
-        line2: this.line2 || null,
-        city: this.city || null,
-        stateOrProvince: this.stateOrProvince || null,
-        postalCode: this.postalCode || null,
-        userId: this.getUserId
-      };
 
-      this.addContact(newContact)
+      this.loading = true;
+
+      this.contact.userId = this.getUserId;
+      this.addContact(this.contact)
         .then(() => {
           this.$router.replace("/dashboard").catch(err => console.error(err));
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          this.loading = false;
+          this.message = "Unable to add contact";
+        });
     }
   },
   components: {
@@ -130,7 +142,8 @@ export default {
     Form,
     Input,
     BackButton,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
