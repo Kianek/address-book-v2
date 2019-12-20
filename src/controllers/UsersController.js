@@ -2,20 +2,20 @@ const UserService = require('../services/UserService');
 const { plainify } = require('../helpers/utils');
 
 module.exports = function UsersController(UserModel) {
-  this.createUser = async function(req, res) {
+  this.createUser = async function (req, res) {
     try {
       const service = new UserService(UserModel);
 
       const result = await service.add(req.body);
       if (!result) return res.status(500).json({ msg: 'Unable to add user' });
 
-      return res.status(201).json(plainify(result));
+      return res.sendStatus(201);
     } catch (err) {
       return res.status(500).json(err);
     }
   };
 
-  this.updateUser = async function(req, res) {
+  this.updateUser = async function (req, res) {
     try {
       const service = new UserService(UserModel);
       const result = await service.update(req.params.id, req.body);
@@ -29,7 +29,7 @@ module.exports = function UsersController(UserModel) {
     }
   };
 
-  this.deleteUser = async function(req, res) {
+  this.deleteUser = async function (req, res) {
     try {
       const service = new UserService(UserModel);
       const result = await service.remove(req.params.id);
