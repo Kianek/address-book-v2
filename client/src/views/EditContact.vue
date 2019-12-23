@@ -129,23 +129,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-@import "@/_colors.scss";
-
-.back-to-dashboard {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  width: 100%;
-}
-
-.btn {
-  background-color: $blue;
-  border-radius: 5px;
-  color: $white;
-  padding: 0.5em 0.7em;
-  text-decoration: none;
-}
-</style>
