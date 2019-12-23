@@ -59,9 +59,17 @@ const actions = {
     })
   },
   updateContact({ commit }, updatedContact) {
-    axios.put(`/contacts/${updatedContact.id}`, updatedContact)
-      .then(res => commit(UPDATE_CONTACT, { contact: res.data }))
-      .catch(err => console.error(err));
+    return new Promise((resolve, reject) => {
+      axios.put(`/contacts/${updatedContact.id}`, updatedContact)
+        .then(res => {
+          commit(UPDATE_CONTACT, { contact: res.data });
+          resolve(res.data);
+        })
+        .catch(err => {
+          console.error(err);
+          reject(err);
+        });
+    })
   },
   clearSelectedContact({ commit }) {
     commit(CLEAR_CURRENT_CONTACT);
