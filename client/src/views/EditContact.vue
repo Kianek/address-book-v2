@@ -7,56 +7,61 @@
       <Input
         required
         label="First Name"
-        v-model="firstName"
+        v-model="contact.firstName"
         placeholder="First Name"
       />
       <Input
         label="Middle Name"
-        v-model="middleName"
+        v-model="contact.middleName"
         placeholder="Middle Name"
       />
       <Input
         label="Last Name"
         required
-        v-model="lastName"
+        v-model="contact.lastName"
         placeholder="Last Name"
       />
       <Input
         label="Phone"
-        v-model="phone"
+        v-model="contact.phone"
         placeholder="Phone"
       />
       <Input
         label="Email"
-        v-model="email"
+        v-model="contact.email"
         placeholder="Email"
       />
       <Input
         label="Line 1"
-        v-model="line1"
+        v-model="contact.line1"
         placeholder="Line 1"
       />
       <Input
         label="Line 2"
-        v-model="line2"
+        v-model="contact.line2"
         placeholder="Line 2"
       />
       <Input
         label="City"
-        v-model="city"
+        v-model="contact.city"
         placeholder="City"
       />
       <Input
         label="State"
-        v-model="stateOrProvince"
+        v-model="contact.stateOrProvince"
         placeholder="State"
       />
       <Input
         label="Zip"
-        v-model="postalCode"
+        v-model="contact.postalCode"
         placeholder="Zip"
       />
       <SubmitButton value="Update Contact" />
+      <FlashMessage
+        v-if="error"
+        failure
+        message="Error updating contact"
+      />
     </Form>
   </Page>
 </template>
@@ -67,43 +72,50 @@ import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      id: 0,
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      line1: "",
-      line2: "",
-      city: "",
-      stateOrProvince: "",
-      postalCode: ""
+      contact: {
+        id: 0,
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        line1: "",
+        line2: "",
+        city: "",
+        stateOrProvince: "",
+        postalCode: ""
+      },
+      error: null
     };
   },
   methods: {
     async handleSubmit() {
-      this.updateContact(this.$data)
+      this.updateContact(this.contact)
         .then(() =>
           this.$router.replace("/dashboard").catch(err => console.error(err))
         )
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.error(err);
+          this.error = true;
+        });
     },
     loadForm() {
       const currentContact = this.getSelectedContact;
 
       // Create an array of the data object's keys in order to access
       // the corresponding value in the selected contact.
-      const keys = Object.keys(this.$data);
+      const keys = Object.keys(this.contact);
 
       // Iterate through the keys, setting the data object's values to
       // those of the current contact.
-      keys.forEach(key => (this.$data[key] = currentContact[key]));
+      keys.forEach(key => (this.contact[key] = currentContact[key]));
 
       this.$nextTick().catch(err => console.error(err));
     },
@@ -124,7 +136,8 @@ export default {
     Form,
     Input,
     BackButton,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
