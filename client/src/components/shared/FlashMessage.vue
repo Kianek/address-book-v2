@@ -12,14 +12,15 @@ export default {
   computed: {
     classObject() {
       return {
-        success: this.success,
-        failure: this.failure,
+        success: this.status === true,
+        failure: this.status === false,
         info: this.info
       };
     }
   },
   props: {
     message: String,
+    status: Boolean,
     success: {
       type: Boolean,
       default: false
@@ -42,8 +43,9 @@ export default {
 @mixin set-theme($theme-color) {
   border: solid 1px $theme-color;
   border-radius: 5px;
-  background-color: lighten($theme-color, 20%);
+  background-color: lighten($theme-color, 25%);
   color: $white;
+  font-weight: 550;
   padding: 1rem;
   text-align: center;
   width: 100%;
