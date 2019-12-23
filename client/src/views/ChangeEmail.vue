@@ -6,11 +6,14 @@
       <Input
         :min="5"
         email
-        required
         placeholder="New Email"
         v-model="email"
       />
       <SubmitButton value="Update" />
+      <FlashMessage
+        :status="status"
+        :message="message"
+      />
     </Form>
   </Page>
 </template>
@@ -21,28 +24,48 @@ import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import Page from "@/components/layout/Page.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
+
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
     return {
-      email: ""
+      email: "",
+      status: null,
+      message: "",
+      status: null
     };
+  },
+  computed: {
+    ...mapGetters(["getUserId"])
   },
   methods: {
     handleSubmit() {
-      console.log("submitting");
-      this.$router.push("/settings");
-    }
+      const userInfo = {
+        email: this.email,
+        id: this.getUserId
+      };
+      this.changeEmail(userInfo)
+        .then(user => {
+          this.status = true;
+          this.message = `Email successfully changed to ${user.email}`;
+          console.log(user);
+        })
+        .catch(() => {
+          this.status = false;
+          this.message = "Unable to change email...";
+        });
+    },
+    ...mapActions(["changeEmail"])
   },
   components: {
     BackButton,
     Form,
     Input,
     Page,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
-
-<style>
-</style>
