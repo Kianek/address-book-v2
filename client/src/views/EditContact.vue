@@ -73,6 +73,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
+      id: 0,
       firstName: "",
       middleName: "",
       lastName: "",
@@ -86,9 +87,12 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      console.log("updating contact");
-      setTimeout(() => this.$router.push("/dashboard"), 3000);
+    async handleSubmit() {
+      this.updateContact(this.$data)
+        .then(() =>
+          this.$router.replace("/dashboard").catch(err => console.error(err))
+        )
+        .catch(err => console.error(err));
     },
     loadForm() {
       const currentContact = this.getSelectedContact;
@@ -103,7 +107,7 @@ export default {
 
       this.$nextTick().catch(err => console.error(err));
     },
-    ...mapActions(["clearSelectedContact", "selectContact"])
+    ...mapActions(["clearSelectedContact", "selectContact", "updateContact"])
   },
   computed: {
     ...mapGetters(["getSelectedContact"])
