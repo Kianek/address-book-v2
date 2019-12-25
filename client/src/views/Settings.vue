@@ -9,9 +9,16 @@
       <router-link to="/change-password">
         Change Password
       </router-link>
-      <button>
+      <button @click="showModal = true">
         <h2>Delete Account</h2>
       </button>
+      <Modal
+        v-model="showModal"
+        title="! DANGER !"
+        :onConfirm="deleteAccount"
+      >
+        This cannot be undone!
+      </Modal>
     </div>
   </Page>
 </template>
@@ -19,11 +26,24 @@
 <script>
 import Page from "@/components/layout/Page.vue";
 import BackButton from "@/components/shared/BackButton.vue";
+import Modal from "@/components/shared/Modal.vue";
 
 export default {
+  data() {
+    return {
+      showModal: false
+    };
+  },
+  methods: {
+    deleteAccount() {
+      console.log("Deleting account");
+      this.showModal = false;
+    }
+  },
   components: {
     Page,
-    BackButton
+    BackButton,
+    Modal
   }
 };
 </script>
