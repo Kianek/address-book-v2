@@ -33,8 +33,7 @@ export default {
     return {
       email: "",
       status: null,
-      message: "",
-      status: null
+      message: ""
     };
   },
   computed: {
@@ -42,11 +41,10 @@ export default {
   },
   methods: {
     handleSubmit() {
-      const userInfo = {
+      this.changeEmail({
         email: this.email,
         id: this.getUserId
-      };
-      this.changeEmail(userInfo)
+      })
         .then(user => {
           this.status = true;
           this.message = `Email successfully changed to ${user.email}`;
