@@ -48,7 +48,6 @@ export default {
         .then(user => {
           this.status = true;
           this.message = `Email successfully changed to ${user.email}`;
-          console.log(user);
         })
         .catch(() => {
           this.status = false;
