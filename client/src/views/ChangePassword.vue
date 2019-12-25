@@ -4,9 +4,9 @@
     <h1>Change Password</h1>
     <Form :submit="handleSubmit">
       <p
-        v-show="error.status"
+        v-show="!passwordsMatch"
         class="error"
-      >{{ error.message }}</p>
+      >Passwords must match</p>
       <Input
         :min="6"
         required
@@ -22,6 +22,11 @@
         v-model="confirmPassword"
       />
       <SubmitButton value="Update" />
+      <FlashMessage
+        v-show="flash.show"
+        :status="flash.status"
+        :message="flash.message"
+      />
     </Form>
   </Page>
 </template>
@@ -32,35 +37,61 @@ import Form from "@/components/shared/Form.vue";
 import Input from "@/components/shared/Input.vue";
 import Page from "@/components/layout/Page.vue";
 import SubmitButton from "@/components/shared/SubmitButton.vue";
+import FlashMessage from "@/components/shared/FlashMessage.vue";
+
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       password: "",
       confirmPassword: "",
-      error: {
-        status: false,
-        message: "Passwords must match"
+      passwordsMatch: true,
+      pw: {
+        error: false
+      },
+      flash: {
+        status: null,
+        show: false,
+        message: ""
       }
     };
   },
   methods: {
     handleSubmit() {
-      console.log("submitting");
-
       if (this.password !== this.confirmPassword) {
-        this.error.status = true;
+        this.flash.show = true;
+        this.flash.status = false;
+        this.flash.message = "Passwords must match";
         return;
+      } else {
+        this.flash.show = false;
       }
-      this.$router.push("/settings");
-    }
+
+      console.log("submitting");
+      this.changePassword({ password: this.password, id: this.getUserId })
+        .then(() => {
+          this.flash.status = true;
+          this.flash.show = true;
+          this.flash.message = "Password successfully changed";
+        })
+        .catch(() => {
+          this.flash.status = false;
+          this.flash.show = true;
+          this.flash.message = "Unable to change password";
+        });
+    },
+    ...mapActions(["changePassword"])
+  },
+  computed: {
+    ...mapGetters(["getUserId"])
   },
   watch: {
     confirmPassword: function(val) {
       if (val !== this.password) {
-        this.error.status = true;
+        this.passwordsMatch = false;
       } else {
-        this.error.status = false;
+        this.passwordsMatch = true;
       }
     }
   },
@@ -69,7 +100,8 @@ export default {
     Form,
     Input,
     Page,
-    SubmitButton
+    SubmitButton,
+    FlashMessage
   }
 };
 </script>
