@@ -1,15 +1,15 @@
 module.exports = function UserService(UserModel) {
   this.User = UserModel;
 
-  this.findById = async function(id) {
+  this.findById = async function (id) {
     return this.User.findByPk(id);
   };
 
-  this.findByEmail = async function(email) {
+  this.findByEmail = async function (email) {
     return this.User.findOne({ where: { email } });
   };
 
-  this.add = async function({ firstName, lastName, email, password }) {
+  this.add = async function ({ firstName, lastName, email, password }) {
     return await this.User.create({
       firstName,
       lastName,
@@ -18,7 +18,7 @@ module.exports = function UserService(UserModel) {
     });
   };
 
-  this.update = async function(id, newInfo) {
+  this.update = async function (id, newInfo) {
     try {
       const user = await this.User.findByPk(id);
 
@@ -30,7 +30,22 @@ module.exports = function UserService(UserModel) {
     }
   };
 
-  this.remove = async function(id) {
+  this.updatePassword = async function (id, newInfo) {
+    try {
+      const user = await this.User.findByPk(id);
+
+      if (!user) return null;
+
+      const hashPassword = require('../helpers/utils').hashPassword;
+      newInfo.passwordHash = hashPassword(newInfo.passwordHash);
+
+      return user.update(newInfo);
+    } catch (err) {
+      return { msg: err };
+    }
+  }
+
+  this.remove = async function (id) {
     return this.User.destroy({ where: { id } });
   };
 };
