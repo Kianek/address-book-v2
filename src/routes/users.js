@@ -11,6 +11,8 @@ router.post('/', controller.createUser);
 
 router.put('/:id', ensureAuthenticated, controller.updateUser);
 
+router.put('/:id/change-password', ensureAuthenticated, controller.changePassword);
+
 router.delete('/:id', ensureAuthenticated, controller.deleteUser);
 
 module.exports = router;
