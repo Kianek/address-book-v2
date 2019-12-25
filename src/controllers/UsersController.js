@@ -29,6 +29,20 @@ module.exports = function UsersController(UserModel) {
     }
   };
 
+  this.changePassword = async function (req, res) {
+    try {
+      const service = new UserService(UserModel);
+
+      const result = await service.updatePassword(req.params.id, req.body);
+
+      if (!result) return res.status(500).json({ msg: 'Unable to update user' });
+
+      return res.sendStatus(200);
+    } catch (err) {
+      return status(500).json({ msg: 'Unable to change password' });
+    }
+  }
+
   this.deleteUser = async function (req, res) {
     try {
       const service = new UserService(UserModel);
