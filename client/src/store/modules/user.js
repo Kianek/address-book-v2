@@ -18,6 +18,9 @@ const mutations = {
   [CHANGE_EMAIL](state, payload) {
     state.user = payload.user;
   },
+  [CHANGE_PASSWORD](state, payload) {
+    state.user = payload.user;
+  }
 };
 
 const getters = {
@@ -53,8 +56,25 @@ const actions = {
         .catch(err => reject(err));
     })
   },
-  changePassword({ commit }) {
-    commit(CHANGE_PASSWORD);
+  changeEmail({ commit }, userInfo) {
+    return new Promise((resolve, reject) => {
+      axios.put(`/users/${userInfo.id}`, { email: userInfo.email })
+        .then(res => {
+          commit(CHANGE_EMAIL, { user: res.data });
+          resolve(res.data);
+        })
+        .catch(err => reject(err));
+    })
+  },
+  changePassword({ commit }, userInfo) {
+    return new Promise((resolve, reject) => {
+      axios.put(`/users/${userInfo.id}/change-password`, { passwordHash: userInfo.password })
+        .then(res => {
+          commit(CHANGE_PASSWORD, { user: res.data });
+          resolve(res.data);
+        })
+        .catch(err => reject(err));
+    })
   },
   deleteAccount({ commit }) {
     commit(DELETE_ACCOUNT);
