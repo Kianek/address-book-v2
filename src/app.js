@@ -4,12 +4,15 @@ const cors = require('cors');
 const passport = require('passport');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const path = require('path');
 const dotenv = require('dotenv');
 
 dotenv.config();
 const app = express();
 app.use(cors());
+
+// Link to client
+const distDir = __dirname + "/client/dist";
+app.use(express.static(distDir));
 
 // Configure middleware
 app.use(helmet());
@@ -46,6 +49,7 @@ const auth = require('./routes/auth');
 app.use('/users', users);
 app.use('/contacts', contacts);
 app.use('/auth', auth);
+
 
 // Start server
 const port = process.env.PORT || 5001;
