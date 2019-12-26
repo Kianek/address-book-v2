@@ -44,8 +44,7 @@ const mutations = {
 const actions = {
   addContact({ commit }, contact) {
     axios.post("/contacts", contact)
-      .then(res => commit(ADD_CONTACT, { contact: res.data }))
-      .catch(err => console.error(err));
+      .then(res => commit(ADD_CONTACT, { contact: res.data }));
   },
   loadContacts({ commit }) {
     return new Promise((resolve, reject) => {
@@ -65,9 +64,8 @@ const actions = {
           commit(UPDATE_CONTACT, { contact: res.data });
           resolve(res.data);
         })
-        .catch(err => {
-          console.error(err);
-          reject(err);
+        .catch(() => {
+          reject();
         });
     })
   },
@@ -91,8 +89,7 @@ const actions = {
           commit(DELETE_CONTACT, { id });
           resolve();
         })
-        .catch(err => {
-          console.error(err);
+        .catch(() => {
           reject();
         });
     })

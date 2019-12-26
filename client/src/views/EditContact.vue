@@ -98,8 +98,8 @@ export default {
   methods: {
     async handleSubmit() {
       this.updateContact(this.contact)
-        .then(() => this.$router.replace("/dashboard").catch(err => {}))
-        .catch(err => {
+        .then(() => this.$router.replace("/dashboard"))
+        .catch(() => {
           this.error = true;
         });
     },
@@ -114,7 +114,7 @@ export default {
       // those of the current contact.
       keys.forEach(key => (this.contact[key] = currentContact[key]));
 
-      this.$nextTick().catch(err => {});
+      this.$nextTick();
     },
     ...mapActions(["clearSelectedContact", "selectContact", "updateContact"])
   },
@@ -122,11 +122,9 @@ export default {
     ...mapGetters(["getSelectedContact"])
   },
   mounted() {
-    this.selectContact(parseInt(this.$route.params.id))
-      .then(() => {
-        this.loadForm();
-      })
-      .catch(err => {});
+    this.selectContact(parseInt(this.$route.params.id)).then(() => {
+      this.loadForm();
+    });
   },
   components: {
     Page,

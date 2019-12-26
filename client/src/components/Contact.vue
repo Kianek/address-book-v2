@@ -38,14 +38,10 @@ import { mapActions } from "vuex";
 export default {
   methods: {
     async del() {
-      try {
-        await this.deleteContact(this.contact.id);
-      } catch (err) {}
+      await this.deleteContact(this.contact.id);
     },
     async select() {
-      try {
-        await this.selectContact(this.contact.id);
-      } catch (err) {}
+      await this.selectContact(this.contact.id);
     },
     ...mapActions(["deleteContact", "selectContact"])
   },

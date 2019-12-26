@@ -128,9 +128,9 @@ export default {
       this.contact.userId = this.getUserId;
       this.addContact(this.contact)
         .then(() => {
-          this.$router.replace("/dashboard").catch(err => {});
+          this.$router.replace("/dashboard");
         })
-        .catch(err => {
+        .catch(() => {
           this.loading = false;
           this.message = "Unable to add contact";
         });

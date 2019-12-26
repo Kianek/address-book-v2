@@ -62,9 +62,9 @@ export default {
       this.isLoading = !this.isLoading;
       this.login({ email: this.email, password: this.password })
         .then(() => {
-          this.$router.replace("/dashboard").catch(err => {});
+          this.$router.replace("/dashboard");
         })
-        .catch(err => {
+        .catch(() => {
           // There was a problem authenticating, so display the flash message.
           this.auth.status = this.isLoading = false;
         });

@@ -46,11 +46,9 @@ export default {
     Contact
   },
   async mounted() {
-    try {
-      await this.loadContacts();
-      this.contacts = this.getAllContacts;
-      await this.$nextTick();
-    } catch (err) {}
+    await this.loadContacts();
+    this.contacts = this.getAllContacts;
+    await this.$nextTick();
   }
 };
 </script>

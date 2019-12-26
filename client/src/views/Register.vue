@@ -109,7 +109,7 @@ export default {
             this.registration.message = "Error creating account...";
           }
         })
-        .catch(err => {
+        .catch(() => {
           this.registration.status = false;
           this.registration.message = "Error creating account...";
           return;
