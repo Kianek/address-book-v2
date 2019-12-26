@@ -28,17 +28,23 @@ import Page from "@/components/layout/Page.vue";
 import BackButton from "@/components/shared/BackButton.vue";
 import Modal from "@/components/shared/Modal.vue";
 
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       showModal: false
     };
   },
+  computed: {
+    ...mapGetters(["getUserId"])
+  },
   methods: {
     deleteAccount() {
-      console.log("Deleting account");
       this.showModal = false;
-    }
+      this.delete(this.getUserId).catch(err => console.error(err));
+    },
+    ...mapActions({ delete: "deleteAccount" })
   },
   components: {
     Page,
