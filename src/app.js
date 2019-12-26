@@ -4,6 +4,7 @@ const cors = require('cors');
 const passport = require('passport');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const path = require('path');
 const dotenv = require('dotenv');
 
 dotenv.config();
