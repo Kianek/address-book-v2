@@ -11,8 +11,6 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-// Link to client
-app.use("/", express.static(path.join(__dirname, "client")));
 
 // Configure middleware
 app.use(helmet());
@@ -50,6 +48,11 @@ app.use('/users', users);
 app.use('/contacts', contacts);
 app.use('/auth', auth);
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, "/public/")));
+
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+}
 
 // Start server
 const port = process.env.PORT || 5001;
