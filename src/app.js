@@ -12,7 +12,7 @@ const app = express();
 app.use(cors());
 
 // Link to client
-app.use(express.static(path.join(__dirname, "client")));
+app.use("/", express.static(path.join(__dirname, "client")));
 
 // Configure middleware
 app.use(helmet());
