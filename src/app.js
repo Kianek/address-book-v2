@@ -46,8 +46,17 @@ app.use('/users', users);
 app.use('/contacts', contacts);
 app.use('/auth', auth);
 
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 // Start server
-const port = process.env.PORT;
+const port = process.env.PORT || 5001;
 app.listen(port, () =>
   console.log(`Server running on http://localhost:${port}`)
 );
