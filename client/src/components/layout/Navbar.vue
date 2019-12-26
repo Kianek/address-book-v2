@@ -64,11 +64,9 @@ export default {
       }
     },
     signOut() {
-      this.logout()
-        .then(() => {
-          this.menuOpen = false;
-        })
-        .catch(err => {});
+      this.logout().then(() => {
+        this.menuOpen = false;
+      });
     }
   },
   created() {
