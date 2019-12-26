@@ -50,9 +50,7 @@ export default {
       await this.loadContacts();
       this.contacts = this.getAllContacts;
       await this.$nextTick();
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
   }
 };
 </script>

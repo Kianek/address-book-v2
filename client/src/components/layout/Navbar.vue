@@ -68,7 +68,7 @@ export default {
         .then(() => {
           this.menuOpen = false;
         })
-        .catch(err => console.error(err));
+        .catch(err => {});
     }
   },
   created() {

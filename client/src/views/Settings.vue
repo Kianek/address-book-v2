@@ -42,7 +42,7 @@ export default {
   methods: {
     deleteAccount() {
       this.showModal = false;
-      this.delete(this.getUserId).catch(err => console.error(err));
+      this.delete(this.getUserId).catch(err => {});
     },
     ...mapActions({ delete: "deleteAccount" })
   },

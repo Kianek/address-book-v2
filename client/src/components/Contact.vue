@@ -40,16 +40,12 @@ export default {
     async del() {
       try {
         await this.deleteContact(this.contact.id);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     },
     async select() {
       try {
         await this.selectContact(this.contact.id);
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) {}
     },
     ...mapActions(["deleteContact", "selectContact"])
   },

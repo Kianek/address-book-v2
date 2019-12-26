@@ -77,7 +77,6 @@ export default {
   },
   methods: {
     createAccount: function() {
-      console.log("creating account");
       if (this.password !== this.confirmPassword) {
         this.error.status = true;
         return;
@@ -105,15 +104,12 @@ export default {
             this.disableBtn = true;
             this.registration.status = true;
             this.registration.message = "Success! Please sign in.";
-
-            console.log(res);
           } else {
             this.registration.status = false;
             this.registration.message = "Error creating account...";
           }
         })
         .catch(err => {
-          console.error(err);
           this.registration.status = false;
           this.registration.message = "Error creating account...";
           return;

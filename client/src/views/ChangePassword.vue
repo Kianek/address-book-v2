@@ -68,7 +68,6 @@ export default {
         this.flash.show = false;
       }
 
-      console.log("submitting");
       this.changePassword({ password: this.password, id: this.getUserId })
         .then(() => {
           this.flash.status = true;
