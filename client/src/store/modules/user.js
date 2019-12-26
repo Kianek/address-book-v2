@@ -20,6 +20,10 @@ const mutations = {
   },
   [CHANGE_PASSWORD](state, payload) {
     state.user = payload.user;
+  },
+  [DELETE_ACCOUNT](state) {
+    state.isAuthenticated = false;
+    state.user = {};
   }
 };
 
@@ -76,8 +80,15 @@ const actions = {
         .catch(err => reject(err));
     })
   },
-  deleteAccount({ commit }) {
-    commit(DELETE_ACCOUNT);
+  deleteAccount({ commit }, userId) {
+    return new Promise((resolve, reject) => {
+      axios.delete(`/users/${userId}`)
+        .then(() => {
+          commit(DELETE_ACCOUNT);
+          resolve();
+        })
+        .catch(err => reject(err))
+    })
   }
 };
 
