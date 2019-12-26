@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const passport = require('passport');
+const path = require('path');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
@@ -11,8 +12,7 @@ const app = express();
 app.use(cors());
 
 // Link to client
-const distDir = __dirname + "/client/dist";
-app.use(express.static(distDir));
+app.use(express.static(path.join(__dirname, "client")));
 
 // Configure middleware
 app.use(helmet());
