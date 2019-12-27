@@ -11,7 +11,7 @@
     "dev": "nodemon index.js",
     "test": "mocha --recursive --timeout 99999 ./src/test",
     "client": "concurrently \"$(cd ./client && yarn serve)\" \"yarn dev\"",
-    "postbuild": "if test \"$NODE_ENV\" = \"production\"; then $(cd ./client && yarn run build); fi"
+    "heroku-postbuild": "if test \"$NODE_ENV\" = \"production\"; then $(cd ./client && yarn run build); fi"
   },
   "devDependencies": {
     "chai": "^4.2.0",
