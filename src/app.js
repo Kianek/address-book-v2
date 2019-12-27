@@ -49,10 +49,10 @@ app.use('/contacts', contacts);
 app.use('/auth', auth);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.use(express.static(path.join(__dirname, "/client/public")));
 
   app.get(/.*/, (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    res.sendFile(path.resolve(__dirname, "client", "public", "index.html"))
   });
 }
 
