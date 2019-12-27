@@ -7,6 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "yarn": "1.21"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^3.3.2",
