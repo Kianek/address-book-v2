@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.x"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "mocha --recursive --timeout 99999 ./src/test",
     "client": "concurrently \"$(cd ./client && yarn serve)\" \"yarn dev\"",
-    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn run build; fi"
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then cd ./client && yarn run build; fi"
   },
   "devDependencies": {
     "chai": "^4.2.0",
