@@ -8,7 +8,7 @@
     "dev": "nodemon index.js",
     "test": "mocha --recursive --timeout 99999 ./src/test",
     "client": "concurrently \"$(cd ./client && yarn serve)\" \"yarn dev\"",
-    "postinstall": "$(cd ./client && yarn build)"
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then yarn run build; fi"
   },
   "devDependencies": {
     "chai": "^4.2.0",
