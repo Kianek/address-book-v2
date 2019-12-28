@@ -83,6 +83,7 @@ export default {
         width: 80%;
 
         button {
+          background-color: $white;
           border: none;
           border-bottom: solid 1px $light-gray;
           border-radius: 3px;
