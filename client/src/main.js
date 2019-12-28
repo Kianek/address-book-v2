@@ -5,7 +5,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-axios.defaults.baseURL = process.env.NODE_ENV === "production" ? `https://localhost:${process.env.PORT}` : "http://localhost:8080";
+axios.defaults.baseURL = process.env.NODE_ENV === "production" ? `http://localhost:${process.env.PORT}` : "http://localhost:8080";
 Vue.use(VueAxios, axios);
 
 new Vue({
