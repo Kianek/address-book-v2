@@ -10,8 +10,8 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "mocha --recursive --timeout 99999 ./src/test",
-    "client": "concurrently \"$(cd ./client && yarn serve)\" \"yarn dev\"",
-    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then $(cd ./client && yarn && yarn run build); fi"
+    "client": "concurrently \"npm run serve --prefix client\" \"npm run dev\"",
+    "postinstall": "if test \"$NODE_ENV\" = \"production\"; then npm install --prefix client && npm run build --prefix client; fi"
   },
   "devDependencies": {
     "chai": "^4.2.0",
