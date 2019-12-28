@@ -30,6 +30,7 @@ export default {
 @import "@/_mixins.scss";
 
 input {
+  background-color: $white;
   border: solid 1px $light-gray;
   border-radius: 5px;
   font-size: 1em;
