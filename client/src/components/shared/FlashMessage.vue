@@ -43,8 +43,8 @@ export default {
 @mixin set-theme($theme-color) {
   border: solid 1px $theme-color;
   border-radius: 5px;
-  background-color: lighten($theme-color, 25%);
-  color: $white;
+  background-color: $white;
+  color: $theme-color;
   font-weight: 550;
   padding: 1rem;
   text-align: center;
