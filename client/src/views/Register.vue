@@ -77,6 +77,11 @@ export default {
   },
   methods: {
     createAccount: function() {
+      // Don't let the user submit the same information again
+      if (this.disableBtn === true) {
+        return;
+      }
+
       if (this.password !== this.confirmPassword) {
         this.error.status = true;
         return;
