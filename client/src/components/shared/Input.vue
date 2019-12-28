@@ -124,23 +124,28 @@ export default {
   margin: 0.2rem;
   text-align: center;
 }
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-input {
-  border: solid 1px $light-gray;
-  border-radius: 5px;
-  font-size: 1em;
-  margin: 0 auto 1em;
-  padding: 0.5em;
-  min-width: 200px;
-  transition: 0.2s;
-  width: 80%;
+  input {
+    border: solid 1px $light-gray;
+    border-radius: 5px;
+    font-size: 1em;
+    margin: 0 auto 1em;
+    padding: 0.5em;
+    min-width: 200px;
+    transition: 0.2s;
+    width: 80%;
 
-  &:focus {
-    @include set-focus($blue);
-  }
+    &:focus {
+      @include set-focus($blue);
+    }
 
-  &.error {
-    @include set_focus($red);
+    &.error {
+      @include set_focus($red);
+    }
   }
 }
 </style>
