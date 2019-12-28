@@ -124,6 +124,7 @@ export default {
   margin: 0.2rem;
   text-align: center;
 }
+
 div {
   display: flex;
   flex-direction: column;
