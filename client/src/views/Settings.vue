@@ -42,7 +42,9 @@ export default {
   methods: {
     deleteAccount() {
       this.showModal = false;
-      this.delete(this.getUserId);
+      this.delete(this.getUserId).then(() => {
+        this.$router.replace("/");
+      });
     },
     ...mapActions({ delete: "deleteAccount" })
   },
